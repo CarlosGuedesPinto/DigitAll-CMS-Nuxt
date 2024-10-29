@@ -25,6 +25,7 @@ const storyblokApi = useStoryblokApi();
 const story = ref(null);
 const loading = ref(true);
 const config = useRuntimeConfig();
+const resolveRelations = ["global_reference.reference"];
 
 const fetchStory = async () => {
   try {
@@ -32,9 +33,9 @@ const fetchStory = async () => {
     const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
       version:
         config.public.NUXT_PUBLIC_SB_ENV === "development" ? "draft" : version,
-      resolve_relations: "global_reference.reference",
+      resolve_relations: resolveRelations,
     });
-    console.log("Story fetched:", data.story);
+
     story.value = data.story;
   } catch (error) {
     console.error("Error fetching story:", error);
@@ -45,5 +46,11 @@ const fetchStory = async () => {
 
 onMounted(async () => {
   await fetchStory();
+
+  if ($preview && story.value && story.value.id) {
+    useStoryblokBridge(story.value.id, (evStory) => (story.value = evStory), {
+      resolveRelations,
+    });
+  }
 });
 </script>
