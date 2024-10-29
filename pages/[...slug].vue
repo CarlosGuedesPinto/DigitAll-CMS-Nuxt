@@ -1,12 +1,49 @@
-<script setup>
-const { slug } = useRoute().params;
-
-const story = await useAsyncStoryblok(
-  slug && slug.length > 0 ? slug.join("/") : "home",
-  { version: "draft" }
-);
-</script>
-
 <template>
-  <StoryblokComponent v-if="story" :blok="story.content" />
+  <div v-if="loading">
+    <p>Loading...</p>
+  </div>
+  <div v-else-if="story">
+    <div v-if="story.content.topbar?.length > 0">
+      <StoryblokComponent
+        :blok="story.content.topbar[0].reference[0].content"
+      />
+    </div>
+    <StoryblokComponent :blok="story.content" />
+  </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+
+const { $preview } = useNuxtApp();
+
+const version = $preview ? "draft" : "published";
+
+const route = useRoute();
+const storyblokApi = useStoryblokApi();
+const story = ref(null);
+const loading = ref(true);
+const config = useRuntimeConfig();
+
+const fetchStory = async () => {
+  try {
+    const slug = route.params.slug ? route.params.slug.join("/") : "home";
+    const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
+      version:
+        config.public.NUXT_PUBLIC_SB_ENV === "development" ? "draft" : version,
+      resolve_relations: "global_reference.reference",
+    });
+    console.log("Story fetched:", data.story);
+    story.value = data.story;
+  } catch (error) {
+    console.error("Error fetching story:", error);
+  } finally {
+    loading.value = false;
+  }
+};
+
+onMounted(async () => {
+  await fetchStory();
+});
+</script>

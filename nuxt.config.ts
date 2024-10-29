@@ -3,6 +3,11 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
-    ['@storyblok/nuxt', { accessToken: process.env.NUXT_PUBLIC_SB_CONTENT_DELIVERY_TOKEN}]
-  ]
+    ['@storyblok/nuxt', { accessToken: process.env.NUXT_PUBLIC_SB_CONTENT_DELIVERY_TOKEN }]
+  ],
+  runtimeConfig: {
+    public: {
+      NUXT_PUBLIC_SB_ENV: process.env.NUXT_PUBLIC_SB_ENV
+    }
+  },
 })
