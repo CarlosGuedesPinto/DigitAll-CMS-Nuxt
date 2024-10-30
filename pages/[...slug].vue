@@ -15,30 +15,36 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { storyblokVersion } from "~/helpers/helpers";
 
 const { $preview } = useNuxtApp();
-
-const version = $preview ? "draft" : "published";
 
 const route = useRoute();
 const storyblokApi = useStoryblokApi();
 const story = ref(null);
 const loading = ref(true);
-const config = useRuntimeConfig();
 const resolveRelations = ["global_reference.reference"];
 
 const fetchStory = async () => {
   try {
     const slug = route.params.slug ? route.params.slug.join("/") : "home";
     const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
-      version:
-        config.public.NUXT_PUBLIC_SB_ENV === "development" ? "draft" : version,
+      version: storyblokVersion(),
       resolve_relations: resolveRelations,
     });
 
     story.value = data.story;
   } catch (error) {
-    console.error("Error fetching story:", error);
+    console.error("Erro ao buscar historia:", error);
+
+    throw createError({
+      statusCode: 404,
+      statusMessage:
+        storyblokVersion() === "draft"
+          ? "Storyblok - Erro ao buscar historia"
+          : "Ups! Algo deu errado",
+      fatal: true,
+    });
   } finally {
     loading.value = false;
   }

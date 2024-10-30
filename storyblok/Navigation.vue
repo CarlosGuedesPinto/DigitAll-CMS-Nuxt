@@ -19,7 +19,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { storyblokVersion } from "~/helpers/helpers";
 
 const props = defineProps({
   blok: {
@@ -28,14 +28,21 @@ const props = defineProps({
   },
 });
 
-const router = useRouter();
-const storyblokApi = useStoryblokApi();
 const items = ref([]);
 const home = ref({});
 
 const fetchSlugs = async () => {
   if (props.blok.items.filter((item) => item.isHomePage).length >= 2) {
-    console.error("Multiplas paginas como Homepage");
+    console.error("Navigation - Multiplas paginas como Homepage");
+
+    throw createError({
+      statusCode: 404,
+      statusMessage:
+        storyblokVersion() === "draft"
+          ? "CMS - Navigation - Multiplas paginas como Homepage"
+          : "Ups! Algo deu errado",
+      fatal: true,
+    });
   }
 
   for (const item of props.blok.items) {
