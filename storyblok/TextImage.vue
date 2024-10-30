@@ -7,7 +7,6 @@
             :src="blok.image.filename"
             :alt="blok.image.alt"
             class="w-full mb-4"
-            loading="lazy"
           />
           <div v-html="content" />
         </div>
@@ -17,7 +16,6 @@
             :src="blok.image.filename"
             :alt="blok.image.alt"
             class="w-full mt-4"
-            loading="lazy"
           />
         </div>
         <div
@@ -34,7 +32,6 @@
               'mr-4': blok.imagePosition === 'left',
             }"
             class="w-1/2"
-            loading="lazy"
           />
           <div v-html="content" class="w-1/2" />
         </div>
