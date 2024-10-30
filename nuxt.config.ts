@@ -9,7 +9,13 @@ export default defineNuxtConfig({
     public: {
       NUXT_PUBLIC_SB_ENV: process.env.NUXT_PUBLIC_SB_ENV,
       NUXT_PUBLIC_AUTH_USERNAME: process.env.NUXT_PUBLIC_AUTH_USERNAME,
-      NUXT_PUBLIC_AUTH_PASSWORD: process.env.NUXT_PUBLIC_AUTH_PASSWORD
+      NUXT_PUBLIC_AUTH_PASSWORD: process.env.NUXT_PUBLIC_AUTH_PASSWORD,
+      NUXT_PUBLIC_SITE_URL: process.env.NUXT_PUBLIC_SITE_URL
     }
   },
+  nitro: {
+    prerender: {
+      routes: ['/sitemap.xml']
+    }
+  }
 })
