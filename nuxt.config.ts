@@ -7,7 +7,8 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      NUXT_PUBLIC_SB_ENV: process.env.NUXT_PUBLIC_SB_ENV
+      NUXT_PUBLIC_SB_ENV: process.env.NUXT_PUBLIC_SB_ENV,
+      NUXT_PUBLIC_SITE_URL: process.env.NUXT_PUBLIC_SITE_URL
     }
   },
   nitro: {
