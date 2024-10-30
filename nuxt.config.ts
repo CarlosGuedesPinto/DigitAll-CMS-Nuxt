@@ -10,4 +10,9 @@ export default defineNuxtConfig({
       NUXT_PUBLIC_SB_ENV: process.env.NUXT_PUBLIC_SB_ENV
     }
   },
+  nitro: {
+    prerender: {
+      routes: ['/sitemap.xml']
+    }
+  }
 })

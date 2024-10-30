@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "@storyblok/nuxt": "^6.0.4",
+    "axios": "^1.7.7",
     "concurrently": "^8.2.2",
     "nuxt": "^3.10.3",
+    "sitemap": "^8.0.0",
     "vue": "^3.4.19",
     "vue-router": "^4.3.0"
   },
