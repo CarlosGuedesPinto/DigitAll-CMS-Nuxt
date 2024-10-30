@@ -13,9 +13,4 @@ export default defineNuxtConfig({
       NUXT_PUBLIC_SITE_URL: process.env.NUXT_PUBLIC_SITE_URL
     }
   },
-  nitro: {
-    prerender: {
-      routes: ['/sitemap.xml']
-    }
-  }
 })
