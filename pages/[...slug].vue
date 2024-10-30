@@ -16,6 +16,10 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
+definePageMeta({
+  middleware: "auth",
+});
+
 const { $preview } = useNuxtApp();
 
 const version = $preview ? "draft" : "published";
