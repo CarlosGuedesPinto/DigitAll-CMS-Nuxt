@@ -1,9 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
-    ['@storyblok/nuxt', { accessToken: process.env.NUXT_PUBLIC_SB_CONTENT_DELIVERY_TOKEN }]
+    ['@storyblok/nuxt', { accessToken: process.env.NUXT_PUBLIC_SB_CONTENT_DELIVERY_TOKEN }],
+    '@nuxtjs/sitemap',
   ],
   runtimeConfig: {
     public: {
@@ -13,4 +15,12 @@ export default defineNuxtConfig({
       NUXT_PUBLIC_SITE_URL: process.env.NUXT_PUBLIC_SITE_URL
     }
   },
-})
+  sitemap: {
+    hostname: process.env.NUXT_PUBLIC_SITE_URL,
+    gzip: true,
+    cacheTime: 1000 * 60 * 2,
+    sources: [
+      '/api/__sitemap__/urls',
+    ]
+  },
+});
