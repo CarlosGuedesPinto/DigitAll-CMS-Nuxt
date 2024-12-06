@@ -48,6 +48,4 @@ const isImageNotVisible = computed(
     !props.blok.image ||
     (props.blok.imagePosition === "left" && props.blok.size === "small")
 );
-
-console.log(props.blok);
 </script>

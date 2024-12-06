@@ -1,0 +1,19 @@
+.footer {
+  grid-template-columns: repeat(12, 1fr);
+  display: grid;
+  gap: 16px;
+
+  &__content {
+    grid-column: span 4;
+  }
+
+  &__rows {
+    grid-column: span 8;
+
+    &--row {
+      grid-column: span 2;
+      display: grid;
+      grid-template-rows: repeat(6, 0.5fr);
+    }
+  }
+}

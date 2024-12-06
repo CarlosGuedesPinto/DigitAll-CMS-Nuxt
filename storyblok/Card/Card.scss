@@ -1,15 +1,15 @@
 .card {
   &__size {
     &--small {
-      width: 332px;
+      grid-column: span 3;
     }
 
     &--medium {
-      width: 448px;
+      grid-column: span 4;
     }
 
     &--large {
-      width: 564px;
+      grid-column: span 5;
     }
   }
 

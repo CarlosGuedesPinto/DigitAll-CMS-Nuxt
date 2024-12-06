@@ -9,6 +9,11 @@
       />
     </div>
     <StoryblokComponent :blok="story.content" />
+    <div v-if="story.content.footer?.length > 0">
+      <StoryblokComponent
+        :blok="story.content.footer[0].reference[0].content"
+      />
+    </div>
   </div>
 </template>
 
@@ -23,7 +28,10 @@ const route = useRoute();
 const storyblokApi = useStoryblokApi();
 const story = ref(null);
 const loading = ref(true);
-const resolveRelations = ["global_reference.reference"];
+const resolveRelations = [
+  "global_reference.reference",
+  "global_reference_footer.reference",
+];
 
 const fetchStory = async () => {
   try {
