@@ -1,0 +1,24 @@
+.card {
+  &__size {
+    &--small {
+      grid-column: span 3;
+    }
+
+    &--medium {
+      grid-column: span 4;
+    }
+
+    &--large {
+      grid-column: span 5;
+    }
+  }
+
+  &__image {
+    aspect-ratio: 16/9;
+    flex: 1;
+  }
+
+  &__content {
+    flex: 2;
+  }
+}

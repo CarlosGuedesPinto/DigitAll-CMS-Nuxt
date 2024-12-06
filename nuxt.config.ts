@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     ['@storyblok/nuxt', { accessToken: process.env.NUXT_PUBLIC_SB_CONTENT_DELIVERY_TOKEN }],
     '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
   ],
   runtimeConfig: {
     public: {
@@ -23,4 +24,14 @@ export default defineNuxtConfig({
       '/api/__sitemap__/urls',
     ]
   },
+  app: {
+    head: {
+      title: process.env.NUXT_PUBLIC_SITE_NAME,
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'digitall', name: 'DigitAll', content: 'DigitAll website' }
+      ]
+    }
+  }
 });

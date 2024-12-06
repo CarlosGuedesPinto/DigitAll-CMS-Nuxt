@@ -1,0 +1,10 @@
+.news {
+  &__scroller {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  &__item {
+    display: grid;
+  }
+}

@@ -1,15 +1,31 @@
 <template>
-  <header class="w-full h-24 bg-[#f7f6fd]" v-if="items.length > 0">
+  <header class="navigation w-full h-24 bg-[#f7f6fd]" v-if="items.length > 0">
     <div class="container h-full mx-auto flex items-center justify-between">
       <NuxtLink :to="home.slug">
         <h1 class="text-gray-800 text-3xl font-bold">{{ home.title }}</h1>
       </NuxtLink>
       <nav>
-        <ul class="flex space-x-8 text-lg font-bold">
-          <li v-for="item in items" :key="item._uid">
+        <ul
+          class="flex space-x-8 text-lg font-bold navigation__nav-link relative"
+        >
+          <li
+            v-for="item in items"
+            :key="item._uid"
+            class="navigation__nav-item"
+          >
             <NuxtLink :to="item.slug" class="hover:text-gray-800">{{
               item.title
             }}</NuxtLink>
+
+            <div class="navigation__submenu flex-col w-max">
+              <NuxtLink
+                v-for="(submenu, index) in item.submenus"
+                :key="`submenu--${index}`"
+                :to="submenu.slug"
+                class="navigation__submenu-item"
+                >{{ submenu.title }}</NuxtLink
+              >
+            </div>
           </li>
         </ul>
       </nav>
@@ -20,6 +36,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { storyblokVersion } from "~/helpers/helpers";
+import "./Navigation.scss";
 
 const props = defineProps({
   blok: {
@@ -49,12 +66,16 @@ const fetchSlugs = async () => {
     if (item.isHomePage) {
       home.value = {
         title: item.title,
-        slug: item.link.cached_url,
+        slug: `/${item.link.cached_url}`,
       };
     } else {
       items.value.push({
         title: item.title,
-        slug: item.link.cached_url,
+        slug: `/${item.link.cached_url}`,
+        submenus: item.submenus?.map((submenu) => ({
+          title: submenu.title,
+          slug: `/${submenu.link.cached_url}`,
+        })),
       });
     }
   }
