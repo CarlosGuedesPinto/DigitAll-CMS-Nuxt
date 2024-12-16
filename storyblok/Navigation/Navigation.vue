@@ -1,32 +1,46 @@
 <template>
-  <header class="navigation w-full h-24 bg-[#f7f6fd]" v-if="items.length > 0">
-    <div class="container h-full mx-auto flex items-center justify-between">
-      <NuxtLink :to="home.slug">
-        <h1 class="text-gray-800 text-3xl font-bold">{{ home.title }}</h1>
+  <header class="navigation w-full h-24" v-if="items.length > 0">
+    <div class="h-full w-full flex items-center justify-between px-4">
+      <NuxtLink to="/">
+        <div class="flex items-end">
+          <!-- Will be an svg -->
+          <h1 class="leading-none navigation__logo">Digit'ALL</h1>
+        </div>
       </NuxtLink>
       <nav>
         <ul
           class="flex space-x-8 text-lg font-bold navigation__nav-link relative"
         >
-          <li
+          <NuxtLink
             v-for="item in items"
             :key="item._uid"
             class="navigation__nav-item"
+            :class="{
+              'navigation__nav-item--active': isItemActive(item.slug, item.submenus && item.submenus.length > 0),
+            }"
+            :to="item.slug"
           >
-            <NuxtLink :to="item.slug" class="hover:text-gray-800">{{
-              item.title
-            }}</NuxtLink>
+            {{item.title}}
 
-            <div class="navigation__submenu flex-col w-max">
-              <NuxtLink
-                v-for="(submenu, index) in item.submenus"
-                :key="`submenu--${index}`"
-                :to="submenu.slug"
-                class="navigation__submenu-item"
-                >{{ submenu.title }}</NuxtLink
-              >
+            <div v-if="item.submenus && item.submenus.length > 0" class="navigation__submenu">
+              <div class="navigation__submenu-container flex flex-col w-max extralight">
+                <NuxtLink
+                  v-for="(submenu, index) in item.submenus"
+                  :key="`submenu--${index}`"
+                  :to="submenu.slug"
+                  class="navigation__submenu-item"
+                  :class="{
+                    'navigation__submenu-item--active': $route.path === submenu.slug,
+                  }"
+                  >{{ submenu.title }}</NuxtLink
+                >
+              </div>
             </div>
-          </li>
+          </NuxtLink>
+          <NuxtLink
+            to="/moodle"
+            class="navigation__nav-item navigation__nav-item--moodle"
+            >Moodle</NuxtLink>
         </ul>
       </nav>
     </div>
@@ -36,6 +50,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { storyblokVersion } from "~/helpers/helpers";
+import { useRouter } from "vue-router";
 import "./Navigation.scss";
 
 const props = defineProps({
@@ -47,6 +62,8 @@ const props = defineProps({
 
 const items = ref([]);
 const home = ref({});
+
+
 
 const fetchSlugs = async () => {
   if (props.blok.items.filter((item) => item.isHomePage).length >= 2) {
@@ -63,26 +80,32 @@ const fetchSlugs = async () => {
   }
 
   for (const item of props.blok.items) {
-    if (item.isHomePage) {
-      home.value = {
-        title: item.title,
-        slug: `/${item.link.cached_url}`,
-      };
-    } else {
-      items.value.push({
-        title: item.title,
-        slug: `/${item.link.cached_url}`,
-        submenus: item.submenus?.map((submenu) => ({
-          title: submenu.title,
-          slug: `/${submenu.link.cached_url}`,
-        })),
-      });
-    }
+    items.value.push({
+      title: item.title,
+      slug: `/${item.link.cached_url}`,
+      submenus: item.submenus?.map((submenu) => ({
+        title: submenu.title,
+        slug: `/${submenu.link.cached_url}`,
+      })),
+    });
   }
 };
 
 onMounted(async () => {
   await fetchSlugs();
 });
+
+const isItemActive = (slug, hasSubmenus) => {
+  const route = useRouter();
+  if (hasSubmenus) {
+    for (const submenu of items.value.find((item) => item.slug === slug).submenus) {
+      if (route.currentRoute.value.path === submenu.slug) {
+        return true;
+      }
+    }
+  }
+
+  return route.currentRoute.value.path === slug;
+};
 </script>
 

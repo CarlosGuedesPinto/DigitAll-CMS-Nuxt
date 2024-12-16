@@ -1,27 +1,58 @@
 .navigation {
+
+  border-bottom: 0.5px solid #0082FF;
+
+  &__logo {
+    font-size: 65px;
+  }
+
+  &__slogan {
+    max-width: 75px;
+  }
+  
   &__submenu {
+
+    &-container {
+      border: 0.5px solid #0082FF;
+      padding: 0 8px 0 8px;
+      border-radius: 8px;
+      width: 216px;
+    }
+
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    transform: translate(-50%);
-    padding-top: 30px;
+    padding-top: 8px;
+
+    font-size: 12px;
+
 
     &-item {
-      padding: 10px 20px;
-      border-bottom: 1px solid #f0f0f0;
+      padding: 6px 0 6px 0;
+      border-bottom: 0.5px solid #0082FF;
       cursor: pointer;
 
+      &:last-child {
+        border-bottom: none;
+      }
+
       &:hover {
-        background-color: #f0f0f0;
+        text-decoration: underline;
+      }
+
+      &:active {
+        text-decoration: underline;
+        color: #FF9E00;
+      }
+
+      &--active {
+        text-decoration: underline;
+        color: #FF9E00;
       }
     }
   }
-
-  &__nav-link {}
 
   &__nav-item:hover &__submenu {
     display: flex;
@@ -29,5 +60,39 @@
 
   &__nav-item {
     position: relative;
+    line-height: 19px;
+    font-size: 14px;
+    padding: 7px;
+
+    border: 0.5px solid #0082FF;
+    border-radius: 8px;
+
+    width: 216px;
+
+    &--moodle {
+      width: 100px;
+    }
+
+    &:hover {
+      border-color: #FF9E00; 
+    }
+
+    &--active {
+      border-color: #FF9E00;
+      color: #FF9E00;
+
+      > * {
+        color: #0082FF;
+      }
+    }
+
+    &:active {
+      border-color: #FF9E00;
+      color: #FF9E00;
+
+      > * {
+        color: #0082FF;
+      }
+    }
   }
 }
