@@ -40,7 +40,7 @@
                 </div>
               </div>
             </div>
-            <NuxtLink v-else :to="item.slug" @click="toggleMenu" :class="['navigation-mobile__nav-item flex w-full', { 'navigation-mobile__nav-item--active': isItemActive(item.slug) }]">{{ item.title }}</NuxtLink>
+            <NuxtLink v-else :to="item.slug" @click="toggleMenu" :class="['navigation-mobile__nav-item flex w-full', { 'navigation-mobile__nav-item--active': isItemActive(item.slug, item.submenus && item.submenus.length > 0) }]">{{ item.title }}</NuxtLink>
           </li>
           <li class="flex">
             <NuxtLink to="/moodle" @click="toggleMenu" class="navigation-mobile__nav-item w-full">Moodle</NuxtLink>
@@ -143,8 +143,16 @@ onMounted(async () => {
   await fetchSlugs();
 });
 
-const isItemActive = (slug) => {
+const isItemActive = (slug, hasSubmenus) => {
   const route = useRouter();
+
+  if (hasSubmenus) {
+    for (const submenu of items.value.find((item) => item.slug === slug).submenus) {
+      if (route.currentRoute.value.path === submenu.slug) {
+        return true;
+      }
+    }
+  }
 
   return route.currentRoute.value.path === slug;
 };
