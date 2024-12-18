@@ -10,6 +10,14 @@
   }
   
   &__submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    padding-top: 8px;
+    font-size: 12px;
+
     &-container {
       background-color: #F7FBFF;
       border: 0.5px solid #0082FF;
@@ -17,16 +25,6 @@
       border-radius: 8px;
       width: 216px;
     }
-
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    padding-top: 8px;
-    
-    font-size: 12px;
-
 
     &-item {
       padding: 6px 0 6px 0;
@@ -63,10 +61,8 @@
     line-height: 19px;
     font-size: 14px;
     padding: 7px;
-    
     border: 0.5px solid #0082FF;
     border-radius: 8px;
-
     width: 216px;
 
     &--moodle {
