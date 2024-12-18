@@ -1,9 +1,8 @@
 .navigation {
-
   border-bottom: 0.5px solid #0082FF;
 
-  &__logo {
-    font-size: 65px;
+  &--white-border {
+    border-bottom: 0.5px solid #F7FBFF;
   }
 
   &__slogan {
@@ -11,8 +10,8 @@
   }
   
   &__submenu {
-
     &-container {
+      background-color: #F7FBFF;
       border: 0.5px solid #0082FF;
       padding: 0 8px 0 8px;
       border-radius: 8px;
@@ -25,7 +24,7 @@
     left: 0;
     z-index: 1000;
     padding-top: 8px;
-
+    
     font-size: 12px;
 
 
@@ -33,6 +32,7 @@
       padding: 6px 0 6px 0;
       border-bottom: 0.5px solid #0082FF;
       cursor: pointer;
+      color: #0082FF;;
 
       &:last-child {
         border-bottom: none;
@@ -63,7 +63,7 @@
     line-height: 19px;
     font-size: 14px;
     padding: 7px;
-
+    
     border: 0.5px solid #0082FF;
     border-radius: 8px;
 
@@ -73,25 +73,78 @@
       width: 100px;
     }
 
-    &:hover {
-      border-color: #FF9E00; 
-    }
-
     &--active {
-      border-color: #FF9E00;
-      color: #FF9E00;
+      border-color: #0082FF;
+      color: #F7FBFF;
+      background-color: #80C0FF;
 
       > * {
-        color: #0082FF;
+        color: #F7FBFF;
       }
     }
 
-    &:active {
-      border-color: #FF9E00;
-      color: #FF9E00;
+    &--is-link {
+      &:hover {
+        border-color: #FF9E00; 
+      }
+  
+      &:active {
+        border-color: #FF9E00;
+        color: #FF9E00;
+  
+        > * {
+          color: #0082FF;
+        }
+      }
+    }
+  }
 
-      > * {
-        color: #0082FF;
+  &-mobile {
+    &__menu {
+      background-color: #0082FF;
+      height: calc(100% - 63px);
+      padding: 16px;
+    }
+
+    &__nav-item:hover &__submenu {
+      display: flex;
+    }
+  
+    &__nav-item {
+      position: relative;
+      line-height: 19px;
+      font-size: 14px;
+      padding: 7px;
+  
+      border: 0.5px solid #F7FBFF;
+      border-radius: 8px;
+      color: #F7FBFF;
+      width: 100%;
+
+      &:hover:not(.navigation-mobile__nav-item--not-link),
+      &:active:not(.navigation-mobile__nav-item--not-link),
+      &--active:not(.navigation-mobile__nav-item--not-link) {
+        background-color: #80C0FF;
+      }
+    }
+
+    &__submenu {
+      margin-top: 14px;
+
+      &-container {
+        gap: 8px;
+        width: 100%;
+      }
+
+      &-item {
+        border-radius: 4px;
+        padding: 14px 7px 14px 7px;
+        border: 0.5px solid #F7FBFF;
+        background-color: #0082FF;
+
+        &:active, &:hover, &--active {
+          background-color: #80C0FF;
+        }
       }
     }
   }

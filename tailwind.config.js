@@ -9,6 +9,9 @@ export default {
         '11px': '11px',
       },
     },
+    screens: {
+      'tablet': '560px',
+    },
   },
   plugins: [],
 }

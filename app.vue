@@ -16,6 +16,9 @@ body
   color: #0082FF
   background-color: #F7FBFF
 
+img
+  max-width: unset
+
 .extrabold
   font-family: 'ppmori-extrabold', sans-serif
 

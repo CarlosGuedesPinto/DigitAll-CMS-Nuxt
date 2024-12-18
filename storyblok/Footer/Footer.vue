@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer w-full">
+  <footer class="footer w-full !hidden">
     <div class="footer__content flex-col flex justify-between">
       <img :src="blok.logo.filename" :alt="blok.logo.alt" loading="lazy" />
     </div>

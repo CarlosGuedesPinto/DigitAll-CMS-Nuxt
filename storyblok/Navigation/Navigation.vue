@@ -1,46 +1,88 @@
 <template>
-  <header class="navigation w-full h-24" v-if="items.length > 0">
-    <div class="h-full w-full flex items-center justify-between px-4">
+  <header :class="{
+    'navigation--white-border': isMenuOpen,
+  }" class="navigation w-full" v-if="items.length > 0">
+    <!-- Mobile -->
+    <div class="h-full w-full flex items-center justify-between p-4 tablet:hidden" :class="{
+      'bg-[#0082FF]': isMenuOpen,
+    }">
       <NuxtLink to="/">
-        <div class="flex items-end">
-          <!-- Will be an svg -->
-          <h1 class="leading-none navigation__logo">Digit'ALL</h1>
-        </div>
+        <img v-if="!isMenuOpen" :src="logo" alt="Logo" width="230px"/>
+        <img v-if="isMenuOpen" :src="logoWhite" alt="Logo" width="230px"/>
       </NuxtLink>
+      <button @click="toggleMenu" class="burger-menu">
+        <img v-if="!isMenuOpen" :src="burguerIcon" alt="Burguer Icon" />
+        <img v-if="isMenuOpen" :src="closeIcon" alt="Close Icon" />
+      </button>
+    </div>
+    <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[77px] left-0 w-full z-50 flex flex-col tablet:hidden">
       <nav>
-        <ul
-          class="flex space-x-8 text-lg font-bold navigation__nav-link relative"
-        >
-          <NuxtLink
+        <ul class="flex flex-col space-y-4 text-lg font-bold">
+          <li
             v-for="item in items"
             :key="item._uid"
-            class="navigation__nav-item"
-            :class="{
-              'navigation__nav-item--active': isItemActive(item.slug, item.submenus && item.submenus.length > 0),
-            }"
-            :to="item.slug"
+            class="flex"
           >
-            {{item.title}}
-
-            <div v-if="item.submenus && item.submenus.length > 0" class="navigation__submenu">
-              <div class="navigation__submenu-container flex flex-col w-max extralight">
-                <NuxtLink
-                  v-for="(submenu, index) in item.submenus"
-                  :key="`submenu--${index}`"
-                  :to="submenu.slug"
-                  class="navigation__submenu-item"
-                  :class="{
-                    'navigation__submenu-item--active': $route.path === submenu.slug,
-                  }"
-                  >{{ submenu.title }}</NuxtLink
-                >
+            <div v-if="item.submenus && item.submenus.length > 0" class="navigation-mobile__nav-item navigation-mobile__nav-item--not-link">
+              {{ item.title }}
+              <div class="navigation-mobile__submenu">
+                <div class="navigation-mobile__submenu-container flex flex-col w-max extralight">
+                  <NuxtLink
+                    v-for="(submenu, index) in item.submenus"
+                    :key="`submenu--${index}`"
+                    :to="submenu.slug"
+                    class="navigation-mobile__submenu-item"
+                    :class="{ 'navigation-mobile__submenu-item--active': $route.path === submenu.slug }"
+                    @click="toggleMenu"
+                  >
+                    {{ submenu.title }}
+                  </NuxtLink>
+                </div>
               </div>
             </div>
-          </NuxtLink>
-          <NuxtLink
-            to="/moodle"
-            class="navigation__nav-item navigation__nav-item--moodle"
-            >Moodle</NuxtLink>
+            <NuxtLink v-else :to="item.slug" @click="toggleMenu" :class="['navigation-mobile__nav-item flex w-full', { 'navigation-mobile__nav-item--active': isItemActive(item.slug) }]">{{ item.title }}</NuxtLink>
+          </li>
+          <li class="flex">
+            <NuxtLink to="/moodle" @click="toggleMenu" class="navigation-mobile__nav-item w-full">Moodle</NuxtLink>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Desktop -->
+    <div class="h-full w-full items-center justify-between py-[10px] px-4 hidden tablet:flex">
+      <NuxtLink to="/">
+        <img :src="logo" alt="Logo" />
+      </NuxtLink>
+      <nav>
+        <ul class="flex space-x-8 text-lg font-bold navigation__nav-link relative">
+          <li
+            v-for="item in items"
+            :key="item._uid"
+            :class="['navigation__nav-item flex', { 'navigation__nav-item--active': isItemActive(item.slug, item.submenus && item.submenus.length > 0) }]"
+          >
+            <template v-if="item.submenus && item.submenus.length > 0" class="w-full">
+              <div>{{ item.title }}</div>
+              <div class="navigation__submenu">
+                <div class="navigation__submenu-container flex flex-col w-max extralight">
+                  <NuxtLink
+                    v-for="(submenu, index) in item.submenus"
+                    :key="`submenu--${index}`"
+                    :to="submenu.slug"
+                    class="navigation__submenu-item"
+                    :class="{ 'navigation__submenu-item--active': $route.path === submenu.slug }"
+                  >
+                    {{ submenu.title }}
+                  </NuxtLink>
+                </div>
+              </div>
+            </template>
+            <template v-else class="flex">
+              <NuxtLink :to="item.slug" class="w-full">{{ item.title }}</NuxtLink>
+            </template>
+          </li>
+          <li class="flex">
+            <NuxtLink to="/moodle" class="navigation__nav-item navigation__nav-item--moodle">Moodle</NuxtLink>
+          </li>
         </ul>
       </nav>
     </div>
@@ -52,6 +94,10 @@ import { ref, onMounted } from "vue";
 import { storyblokVersion } from "~/helpers/helpers";
 import { useRouter } from "vue-router";
 import "./Navigation.scss";
+import logo from "~/assets/logos/LogoDesktop.svg";
+import logoWhite from "~/assets/logos/LogoDesktopWhite.svg";
+import burguerIcon from "~/assets/icons/Burguer.svg";
+import closeIcon from "~/assets/icons/CloseIconWhite.svg";
 
 const props = defineProps({
   blok: {
@@ -61,9 +107,11 @@ const props = defineProps({
 });
 
 const items = ref([]);
-const home = ref({});
+const isMenuOpen = ref(false);
 
-
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
 
 const fetchSlugs = async () => {
   if (props.blok.items.filter((item) => item.isHomePage).length >= 2) {
@@ -95,15 +143,8 @@ onMounted(async () => {
   await fetchSlugs();
 });
 
-const isItemActive = (slug, hasSubmenus) => {
+const isItemActive = (slug) => {
   const route = useRouter();
-  if (hasSubmenus) {
-    for (const submenu of items.value.find((item) => item.slug === slug).submenus) {
-      if (route.currentRoute.value.path === submenu.slug) {
-        return true;
-      }
-    }
-  }
 
   return route.currentRoute.value.path === slug;
 };
