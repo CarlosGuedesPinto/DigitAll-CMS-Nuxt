@@ -10,7 +10,7 @@ export default {
       },
     },
     screens: {
-      'tablet': '560px',
+      'tablet': '832px',
     },
   },
   plugins: [],

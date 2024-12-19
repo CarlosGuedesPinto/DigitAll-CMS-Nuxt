@@ -49,42 +49,44 @@
       </nav>
     </div>
     <!-- Desktop -->
-    <div class="h-full w-full items-center justify-between py-[10px] px-4 hidden tablet:flex">
-      <NuxtLink to="/">
-        <img :src="logo" alt="Logo" />
-      </NuxtLink>
-      <nav>
-        <ul class="flex space-x-8 text-lg font-bold navigation__nav-link relative">
-          <li
-            v-for="item in items"
-            :key="item._uid"
-            :class="['navigation__nav-item flex', { 'navigation__nav-item--active': isItemActive(item.slug, item.submenus && item.submenus.length > 0) }]"
-          >
-            <template v-if="item.submenus && item.submenus.length > 0" class="w-full">
-              <div>{{ item.title }}</div>
-              <div class="navigation__submenu">
-                <div class="navigation__submenu-container flex flex-col w-max extralight">
-                  <NuxtLink
-                    v-for="(submenu, index) in item.submenus"
-                    :key="`submenu--${index}`"
-                    :to="submenu.slug"
-                    class="navigation__submenu-item"
-                    :class="{ 'navigation__submenu-item--active': $route.path === submenu.slug }"
-                  >
-                    {{ submenu.title }}
-                  </NuxtLink>
+    <div class="navigation__desktop h-full w-full  py-[10px] px-4 hidden tablet:flex">
+      <div class="navigation__desktop--content w-full flex items-center justify-between">
+        <NuxtLink to="/">
+          <img :src="logo" alt="Logo" />
+        </NuxtLink>
+        <nav>
+          <ul class="flex space-x-8 text-lg font-bold navigation__nav-link relative">
+            <li
+              v-for="item in items"
+              :key="item._uid"
+              :class="['navigation__nav-item flex', { 'navigation__nav-item--active': isItemActive(item.slug, item.submenus && item.submenus.length > 0) }]"
+            >
+              <template v-if="item.submenus && item.submenus.length > 0" class="w-full">
+                <div>{{ item.title }}</div>
+                <div class="navigation__submenu">
+                  <div class="navigation__submenu-container flex flex-col w-max extralight">
+                    <NuxtLink
+                      v-for="(submenu, index) in item.submenus"
+                      :key="`submenu--${index}`"
+                      :to="submenu.slug"
+                      class="navigation__submenu-item"
+                      :class="{ 'navigation__submenu-item--active': $route.path === submenu.slug }"
+                    >
+                      {{ submenu.title }}
+                    </NuxtLink>
+                  </div>
                 </div>
-              </div>
-            </template>
-            <template v-else class="flex">
-              <NuxtLink :to="item.slug" class="w-full">{{ item.title }}</NuxtLink>
-            </template>
-          </li>
-          <li class="flex">
-            <NuxtLink to="/moodle" class="navigation__nav-item navigation__nav-item--moodle">Moodle</NuxtLink>
-          </li>
-        </ul>
-      </nav>
+              </template>
+              <template v-else class="flex">
+                <NuxtLink :to="item.slug" class="w-full">{{ item.title }}</NuxtLink>
+              </template>
+            </li>
+            <li class="flex">
+              <NuxtLink to="/moodle" class="navigation__nav-item navigation__nav-item--moodle">Moodle</NuxtLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </header>
 </template>

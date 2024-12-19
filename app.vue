@@ -16,6 +16,9 @@ body
   color: #0082FF
   background-color: #F7FBFF
 
+* 
+  font-synthesis: none !important
+
 img
   max-width: unset
 
