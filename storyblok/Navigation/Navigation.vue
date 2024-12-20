@@ -3,7 +3,7 @@
     'navigation--white-border': isMenuOpen,
   }" class="navigation w-full grid" v-if="items.length > 0">
     <!-- Mobile -->
-    <div class="h-full w-full flex justify-between px-4 pt-4 pb-[10px] tablet:hidden" :class="{
+    <div class="h-full w-full flex justify-between px-4 pt-4 pb-[10px] desktop:hidden" :class="{
       'bg-[#0082FF]': isMenuOpen,
     }">
       <NuxtLink to="/">
@@ -15,9 +15,9 @@
         <img v-if="isMenuOpen" :src="closeIcon" alt="Close Icon" />
       </button>
     </div>
-    <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col tablet:hidden justify-between">
-      <nav>
-        <ul class="flex flex-col space-y-4 text-lg font-bold">
+    <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col desktop:hidden justify-between">
+      <nav class="tablet:grid tablet:justify-end tablet-landscape:flex">
+        <ul class="flex flex-col tablet-landscape:grid tablet-landscape:grid-cols-4 gap-4 text-lg font-bold tablet:max-w-[392px] tablet-landscape:max-w-[100%] w-full">
           <li
             v-for="item in items"
             :key="item._uid"
@@ -57,7 +57,7 @@
       </div>
     </div>
     <!-- Desktop -->
-    <div class="navigation__desktop h-full w-full px-4 pt-4 pb-[7.5px] hidden tablet:flex">
+    <div class="navigation__desktop h-full w-full px-4 pt-4 pb-[7.5px] hidden desktop:flex">
       <div class="navigation__desktop--content w-full flex justify-between">
         <NuxtLink to="/">
           <img :src="logo" alt="Logo" width="216px" height="40.5px"/>
