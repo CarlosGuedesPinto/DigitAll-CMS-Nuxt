@@ -126,6 +126,11 @@ const screenWidth = ref(window.innerWidth);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
+  if (isMenuOpen.value) {
+    document.body.classList.add('no-scroll');
+  } else {
+    document.body.classList.remove('no-scroll');
+  }
 };
 
 const getTitles = (submenu) => {
