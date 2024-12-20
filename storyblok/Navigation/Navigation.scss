@@ -22,13 +22,18 @@
     z-index: 1000;
     padding-top: 8px;
     font-size: 12px;
+    width: 100%;
 
     &-container {
       background-color: #F7FBFF;
       border: 0.5px solid #0082FF;
       padding: 0 8px 0 8px;
       border-radius: 8px;
-      width: 216px;
+      width: 100%;
+     
+      @media screen and (min-width: 1408px) {
+        width: 216px;
+      }
     }
 
     &-item {

@@ -15,7 +15,7 @@
         <img v-if="isMenuOpen" :src="closeIcon" alt="Close Icon" />
       </button>
     </div>
-    <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col tablet:hidden">
+    <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col tablet:hidden justify-between">
       <nav>
         <ul class="flex flex-col space-y-4 text-lg font-bold">
           <li
@@ -47,6 +47,14 @@
           </li>
         </ul>
       </nav>
+      <div class="navigation-mobile__footer flex justify-center w-full">
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <img :src="logoIPBWhite" alt="LogoIPB" class="w-full h-auto" />
+          <img :src="logoIPCWhite" alt="LogoIPC" class="w-full h-auto" />
+          <img :src="logoIPPWhite" alt="LogoIPP" class="w-full h-auto" />
+          <img :src="logoIPVCWhite" alt="LogoIPVC" class="w-full h-auto" />
+        </div>
+      </div>
     </div>
     <!-- Desktop -->
     <div class="navigation__desktop h-full w-full px-4 pt-4 pb-[7.5px] hidden tablet:flex">
@@ -72,7 +80,7 @@
                       class="navigation__submenu-item"
                       :class="{ 'navigation__submenu-item--active': $route.path === submenu.slug }"
                     >
-                      {{ submenu.title }}
+                      {{ getTitles(submenu) }}
                     </NuxtLink>
                   </div>
                 </div>
@@ -100,6 +108,10 @@ import logo from "~/assets/logos/LogoDesktop.svg";
 import logoWhite from "~/assets/logos/LogoDesktopWhite.svg";
 import burguerIcon from "~/assets/icons/Burguer.svg";
 import closeIcon from "~/assets/icons/CloseIconWhite.svg";
+import logoIPBWhite from "~/assets/logos/LogoIPBWhite.svg";
+import logoIPCWhite from "~/assets/logos/LogoIPCWhite.svg";
+import logoIPPWhite from "~/assets/logos/LogoIPPWhite.svg";
+import logoIPVCWhite from "~/assets/logos/LogoIPVCWhite.svg";
 
 const props = defineProps({
   blok: {
@@ -110,9 +122,18 @@ const props = defineProps({
 
 const items = ref([]);
 const isMenuOpen = ref(false);
+const screenWidth = ref(window.innerWidth);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
+};
+
+const getTitles = (submenu) => {
+  return screenWidth.value > 1408 ? submenu.title : submenu.acronym;
+};
+
+const updateScreenWidth = () => {
+  screenWidth.value = window.innerWidth;
 };
 
 const fetchSlugs = async () => {
@@ -133,17 +154,15 @@ const fetchSlugs = async () => {
     items.value.push({
       title: item.title,
       slug: `/${item.link.cached_url}`,
+      acronym: item.acronym,
       submenus: item.submenus?.map((submenu) => ({
         title: submenu.title,
         slug: `/${submenu.link.cached_url}`,
+        acronym: submenu.acronym,
       })),
     });
   }
 };
-
-onMounted(async () => {
-  await fetchSlugs();
-});
 
 const isItemActive = (slug, hasSubmenus) => {
   const route = useRouter();
@@ -158,5 +177,14 @@ const isItemActive = (slug, hasSubmenus) => {
 
   return route.currentRoute.value.path === slug;
 };
+
+onMounted(async () => {
+  await fetchSlugs();
+  window.addEventListener('resize', updateScreenWidth);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateScreenWidth);
+});
 </script>
 
