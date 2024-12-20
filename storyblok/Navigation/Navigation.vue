@@ -1,21 +1,21 @@
 <template>
   <header :class="{
     'navigation--white-border': isMenuOpen,
-  }" class="navigation w-full" v-if="items.length > 0">
+  }" class="navigation w-full grid" v-if="items.length > 0">
     <!-- Mobile -->
-    <div class="h-full w-full flex items-center justify-between p-4 tablet:hidden" :class="{
+    <div class="h-full w-full flex justify-between px-4 pt-4 pb-[10px] tablet:hidden" :class="{
       'bg-[#0082FF]': isMenuOpen,
     }">
       <NuxtLink to="/">
-        <img v-if="!isMenuOpen" :src="logo" alt="Logo" width="230px"/>
-        <img v-if="isMenuOpen" :src="logoWhite" alt="Logo" width="230px"/>
+        <img v-if="!isMenuOpen" :src="logo" alt="Logo" width="160px" height="30px"/>
+        <img v-if="isMenuOpen" :src="logoWhite" alt="Logo" width="160px" height="30px"/>
       </NuxtLink>
-      <button @click="toggleMenu" class="burger-menu">
+      <button @click="toggleMenu" class="navigation-mobile__button">
         <img v-if="!isMenuOpen" :src="burguerIcon" alt="Burguer Icon" />
         <img v-if="isMenuOpen" :src="closeIcon" alt="Close Icon" />
       </button>
     </div>
-    <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[77px] left-0 w-full z-50 flex flex-col tablet:hidden">
+    <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col tablet:hidden">
       <nav>
         <ul class="flex flex-col space-y-4 text-lg font-bold">
           <li
@@ -49,13 +49,13 @@
       </nav>
     </div>
     <!-- Desktop -->
-    <div class="navigation__desktop h-full w-full  py-[10px] px-4 hidden tablet:flex">
-      <div class="navigation__desktop--content w-full flex items-center justify-between">
+    <div class="navigation__desktop h-full w-full px-4 pt-4 pb-[7.5px] hidden tablet:flex">
+      <div class="navigation__desktop--content w-full flex justify-between">
         <NuxtLink to="/">
-          <img :src="logo" alt="Logo" />
+          <img :src="logo" alt="Logo" width="216px" height="40.5px"/>
         </NuxtLink>
         <nav>
-          <ul class="flex space-x-8 text-lg font-bold navigation__nav-link relative">
+          <ul class="flex gap-4 text-lg font-bold navigation__nav-link relative">
             <li
               v-for="item in items"
               :key="item._uid"
