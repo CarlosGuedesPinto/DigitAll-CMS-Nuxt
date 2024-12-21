@@ -1,86 +1,107 @@
 <template>
-  <footer class="footer w-full !hidden">
-    <div class="footer__content flex-col flex justify-between">
-      <img :src="blok.logo.filename" :alt="blok.logo.alt" loading="lazy" />
-    </div>
-    <div class="footer__rows grid grid-flow-col">
-      <div
-        v-for="row in blok.rows"
-        :key="row.uid"
-        class="footer__rows--row flex flex-col text-white gap-4"
-      >
-        <div class="content-center">
-          <img :src="row.logo.filename" :alt="row.logo.alt" loading="lazy" />
-        </div>
-        <!-- Fix this -->
-        <a class="extrabold" :href="row.website.cached_url" target="_blank" rel="noopener noreferrer">{{ row.website.cached_url }}</a>
-
-        <div class="flex flex-col">
-          <span class="extrabold">Morada</span>
-          <span class="extralight">{{ row.address }}</span>
+  <footer class="footer">
+    <div class="footer__container w-full">
+      <div class="footer__rows--row footer__rows--row--left flex-col flex">
+        <div class="footer__rows--row-image">
+          <img :src="logoWhite" alt="Logo" width="332px" height="72px"/>
         </div>
 
-        <div class="flex flex-col">
-          <span class="extrabold">Mail</span>
-          <span class="extralight">{{ row.mail }}</span>
-        </div>
+        <div class="footer__rows--row-content flex-col flex">
+          <span class="extrabold">Coordenação do Projeto</span>
 
-        <div class="flex flex-col">
-          <span class="extrabold">Telefone</span>
-          <span class="extralight">{{ row.cellphone }}</span>
-        </div>
+          <div class="flex flex-col">
+            <span class="extrabold">Morada</span>
+            <span class="extralight" v-html="formatText(blok.address)" />
+          </div>
 
-        <div class="flex flex-col">
-          <span class="extrabold">Redes Sociais</span>
-          <NuxtLink
-            v-if="row.socials[0].instagram_link"
-            :to="row.socials[0].instagram_link.cached_url"
-             class="extralight"
-            >Instagram</NuxtLink
-          >
-          <NuxtLink
-            v-if="row.socials[0].facebook_link"
-            :to="row.socials[0].facebook_link.cached_url"
-             class="extralight"
-            >Facebook</NuxtLink
-          >
-          <NuxtLink
-            v-if="row.socials[0].linkedin_link"
-            :to="row.socials[0].linkedin_link.cached_url"
-             class="extralight"
-            >LinkedIn</NuxtLink
-          >
-          <NuxtLink
-            v-if="row.socials[0].youtube_link"
-            :to="row.socials[0].youtube_link.cached_url"
-             class="extralight"
-            >Youtube</NuxtLink
-          >
-          <NuxtLink
-            v-if="row.socials[0].tiktok_link"
-            :to="row.socials[0].tiktok_link.cached_url"
-             class="extralight"
-            >TikTok</NuxtLink
-          >
-          <NuxtLink
-            v-if="row.socials[0].x_link"
-            :to="row.socials[0].x_link.cached_url"
-             class="extralight"
-            >X</NuxtLink
-          >
+          <div class="flex flex-col">
+            <span class="extrabold">Mail</span>
+            <span class="extralight">{{ blok.mail }}</span>
+          </div>
+
+          <div class="flex flex-col">
+            <span class="extrabold">Telefone</span>
+            <span class="extralight" v-html="formatText(blok.cellphone)" />
+          </div>
+        </div>
+      </div>
+      <div class="footer__rows grid grid-flow-col">
+        <div
+          v-for="row in blok.rows"
+          :key="row.uid"
+          class="footer__rows--row footer__rows--row--border flex flex-col gap-4"
+        >
+          <div>
+            <img :src="row.logo.filename" :alt="row.logo.alt" loading="lazy" style="h-full"/>
+          </div>
+
+          <NuxtLink class="extrabold" :to="row.website.cached_url">{{ row.website.cached_url }}</NuxtLink>
+
+          <div class="flex flex-col">
+            <span class="extrabold">Morada</span>
+            <span class="extralight" v-html="formatText(row.address)" />
+          </div>
+
+          <div class="flex flex-col">
+            <span class="extrabold">Mail</span>
+            <span class="extralight">{{ row.mail }}</span>
+          </div>
+
+          <div class="flex flex-col">
+            <span class="extrabold">Telefone</span>
+            <span class="extralight" v-html="formatText(row.cellphone)" />
+          </div>
+
+          <div class="flex flex-col">
+            <span class="extrabold">Redes Sociais</span>
+            <NuxtLink
+              v-if="row.socials[0].instagram_link"
+              :to="row.socials[0].instagram_link.cached_url"
+              class="extralight"
+              >Instagram</NuxtLink
+            >
+            <NuxtLink
+              v-if="row.socials[0].facebook_link"
+              :to="row.socials[0].facebook_link.cached_url"
+              class="extralight"
+              >Facebook</NuxtLink
+            >
+            <NuxtLink
+              v-if="row.socials[0].linkedin_link"
+              :to="row.socials[0].linkedin_link.cached_url"
+              class="extralight"
+              >LinkedIn</NuxtLink
+            >
+          </div>
         </div>
       </div>
     </div>
   </footer>
+  <div class="footer__copyright">
+    <div class="footer__copyright--container">
+      <img :src="logosFooter" alt="Logo" class="footer__copyright--logos"/>
+      <div class="footer__copyright--authors flex flex-col">
+        <span class="">Digit'ALL 2025 ©</span>
+        <span class=""><NuxtLink to="https://angelogoncalves.pt/">Design Ângelo Gonçalves</NuxtLink> | Programação Carlos Guedes </span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import "./Footer.scss";
+import logoWhite from "~/assets/logos/LogoDesktopWhite.svg";
+import logosFooter from "~/assets/logos/LogosFooter.svg";
+
 const props = defineProps({
   blok: {
     type: Object,
     required: true,
   },
 });
+
+const formatText = (text) => {
+  return text.replace(/\n/g, '<br>');
+};
 </script>
 
