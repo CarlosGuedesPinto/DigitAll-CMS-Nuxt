@@ -16,8 +16,8 @@
       </button>
     </div>
     <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col desktop:hidden justify-between overflow-scroll">
-      <nav class="tablet:grid tablet:justify-end tablet-landscape:flex">
-        <ul class="flex flex-col tablet-landscape:grid tablet-landscape:grid-cols-4 gap-4 text-lg font-bold tablet:max-w-[392px] tablet-landscape:max-w-[100%] w-full">
+      <nav class="tablet:flex">
+        <ul class="flex flex-col tablet:grid tablet:grid-cols-4 gap-4 text-lg font-bold tablet:max-w-[100%] w-full">
           <li
             v-for="item in items"
             :key="item._uid"
@@ -47,7 +47,7 @@
           </li>
         </ul>
       </nav>
-      <div class="navigation-mobile__footer flex justify-center w-full">
+      <div class="navigation-mobile__footer flex justify-center w-full pt-[120px]">
         <div class="grid grid-cols-4 gap-4 items-center">
           <img :src="logoIPBWhite" alt="LogoIPB" class="w-full h-auto" />
           <img :src="logoIPCWhite" alt="LogoIPC" class="w-full h-auto" />

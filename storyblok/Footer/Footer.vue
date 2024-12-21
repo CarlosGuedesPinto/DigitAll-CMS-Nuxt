@@ -3,7 +3,7 @@
     <div class="footer__container w-full">
       <div class="footer__rows--row footer__rows--row--left flex-col flex">
         <div class="footer__rows--row-image">
-          <img :src="logoWhite" alt="Logo" width="332px" height="72px"/>
+          <img :src="logoWhite" alt="Logo" />
         </div>
 
         <div class="footer__rows--row-content flex-col flex">
@@ -35,7 +35,11 @@
             <img :src="row.logo.filename" :alt="row.logo.alt" loading="lazy" style="h-full"/>
           </div>
 
-          <NuxtLink class="extrabold" :to="row.website.cached_url">{{ row.website.cached_url }}</NuxtLink>
+          <NuxtLink 
+            class="extrabold" 
+            :to="row.website.cached_url" 
+            target="_blank"
+            rel="noopener noreferrer">{{ row.website.cached_url }}</NuxtLink>
 
           <div class="flex flex-col">
             <span class="extrabold">Morada</span>
@@ -57,18 +61,24 @@
             <NuxtLink
               v-if="row.socials[0].instagram_link"
               :to="row.socials[0].instagram_link.cached_url"
+              target="_blank"
+              rel="noopener noreferrer"
               class="extralight"
               >Instagram</NuxtLink
             >
             <NuxtLink
               v-if="row.socials[0].facebook_link"
               :to="row.socials[0].facebook_link.cached_url"
+              target="_blank"
+              rel="noopener noreferrer"
               class="extralight"
               >Facebook</NuxtLink
             >
             <NuxtLink
               v-if="row.socials[0].linkedin_link"
               :to="row.socials[0].linkedin_link.cached_url"
+              target="_blank"
+              rel="noopener noreferrer"
               class="extralight"
               >LinkedIn</NuxtLink
             >
@@ -82,7 +92,12 @@
       <img :src="logosFooter" alt="Logo" class="footer__copyright--logos"/>
       <div class="footer__copyright--authors flex flex-col">
         <span class="">Digit'ALL 2025 ©</span>
-        <span class=""><NuxtLink to="https://angelogoncalves.pt/">Design Ângelo Gonçalves</NuxtLink> | Programação Carlos Guedes </span>
+        <span class="">
+          <NuxtLink 
+            to="https://angelogoncalves.pt/" 
+            target="_blank"
+            rel="noopener noreferrer">Design Ângelo Gonçalves
+          </NuxtLink> | Programação Carlos Guedes </span>
       </div>
     </div>
   </div>

@@ -23,10 +23,15 @@
   &__rows {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: 
+        "row1 row2"
+        "row3 row4";
 
     @media screen and (min-width: 1104px) {
       grid-template-columns: repeat(4, 1fr);
       grid-template-rows: 1fr;
+      grid-template-areas: 
+      "row1 row2 row3 row4";
     }
 
     @media screen and (max-width: 1408px) {
@@ -40,7 +45,23 @@
 
       &--border {
         border-top: 0.5px solid #F7FBFF;
-        padding: 16px 6px 0 6px;
+        padding: 16px 0 0 0;
+
+        &:nth-child(1) {
+          grid-area: row1;
+        }
+  
+        &:nth-child(2) {
+          grid-area: row2;
+        }
+  
+        &:nth-child(3) {
+          grid-area: row3;
+        }
+  
+        &:nth-child(4) {
+          grid-area: row4;
+        }
 
         @media screen and (min-width: 1408px) {
           padding: 0 6px 0 6px;
@@ -71,17 +92,17 @@
             padding-bottom: 24px;
 
             img {
-              width: 216px;
-              height: 40.5px;
+              width: 160px;
+              height: 30px;
+
+              @media screen and (min-width: 832px) {
+                width: 216px;
+                height: 40px;
+              }
             }
 
             @media screen and (min-width: 1408px) {
               padding-bottom: 0;
-
-              img {
-                width: 332px;
-                height: 72px;
-              }
             }
           }
         }
@@ -92,10 +113,10 @@
   &__copyright {
     justify-content: center;
     display: flex;
-    font-size: 17px;
+    font-size: 11px;
 
     @media screen and (min-width: 1408px) {
-      font-size: 11px;
+      font-size: 17px;
     }
 
     &--container {

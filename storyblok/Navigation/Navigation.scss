@@ -6,7 +6,7 @@ body.no-scroll {
 }
 
 .navigation {
-  border-bottom: 0.5px solid #0082FF;
+  border-bottom: 1px solid #0082FF;
 
   &__desktop {
     max-width: 1408px;
@@ -14,7 +14,7 @@ body.no-scroll {
   }
 
   &--white-border {
-    border-bottom: 0.5px solid #F7FBFF;
+    border-bottom: 1px solid #F7FBFF;
   }
 
   &__slogan {
@@ -33,7 +33,7 @@ body.no-scroll {
 
     &-container {
       background-color: #F7FBFF;
-      border: 0.5px solid #0082FF;
+      border: 1px solid #0082FF;
       padding: 0 8px 0 8px;
       border-radius: 8px;
       width: 100%;
@@ -45,7 +45,7 @@ body.no-scroll {
 
     &-item {
       padding: 6px 0 6px 0;
-      border-bottom: 0.5px solid #0082FF;
+      border-bottom: 1px solid #0082FF;
       cursor: pointer;
       color: #0082FF;;
 
@@ -78,7 +78,7 @@ body.no-scroll {
     line-height: 19px;
     font-size: 14px;
     padding: 7px;
-    border: 0.5px solid #0082FF;
+    border: 1px solid #0082FF;
     border-radius: 8px;
 
     @media screen and (min-width: 1408px) {
@@ -133,7 +133,7 @@ body.no-scroll {
       font-size: 14px;
       padding: 8px;
       height: min-content;
-      border: 0.5px solid #F7FBFF;
+      border: 1px solid #F7FBFF;
       border-radius: 8px;
       color: #F7FBFF;
       width: 100%;
@@ -156,7 +156,7 @@ body.no-scroll {
       &-item {
         border-radius: 4px;
         padding: 8px;
-        border: 0.5px solid #F7FBFF;
+        border: 1px solid #F7FBFF;
         background-color: #0082FF;
 
         &:active, &:hover, &--active {
