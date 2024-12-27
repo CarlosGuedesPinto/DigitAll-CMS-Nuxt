@@ -1,0 +1,22 @@
+.text-content {
+  width: 100%;
+  max-width: 1408px;
+  margin: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  &__title {
+    font-size: 65px;
+    display: inline-block;
+    line-height: 1;
+    width: 100%;
+
+    &--border {
+      border-bottom: 1px solid #0082FF;
+    }
+  }
+
+  &__content {
+    padding-top: 14px;
+  }
+}

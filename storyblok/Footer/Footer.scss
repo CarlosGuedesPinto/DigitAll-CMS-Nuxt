@@ -127,7 +127,7 @@
       display: grid;
       grid-template-columns: 1fr;
 
-      @media screen and (min-width: 1104px) {
+      @media screen and (min-width: 832px) {
         grid-template-columns: 1fr 1fr;
         
       }
@@ -141,7 +141,7 @@
       border-top: 0.5px solid #0082FF;
       padding-top: 16px;
 
-      @media screen and (min-width: 1104px) {
+      @media screen and (min-width: 832px) {
         border-top: none;
         padding-left: 12px;
         padding-top: 0px;
@@ -150,7 +150,7 @@
 
     &--logos {
       padding-bottom: 16px;
-      @media screen and (min-width: 1104px) {
+      @media screen and (min-width: 832px) {
         padding-bottom: 0px;
       }
     }
