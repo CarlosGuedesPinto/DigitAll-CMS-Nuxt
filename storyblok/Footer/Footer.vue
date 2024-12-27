@@ -107,6 +107,7 @@
 import "./Footer.scss";
 import logoWhite from "~/assets/logos/LogoDesktopWhite.svg";
 import logosFooter from "~/assets/logos/LogosFooter.svg";
+import { formatText } from "~/src/helpers/text"
 
 const props = defineProps({
   blok: {
@@ -114,9 +115,5 @@ const props = defineProps({
     required: true,
   },
 });
-
-const formatText = (text) => {
-  return text.replace(/\n/g, '<br>');
-};
 </script>
 

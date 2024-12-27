@@ -1,0 +1,56 @@
+.button {
+  justify-content: space-between;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  width: 256px;
+  font-size: 20px;
+
+  &__icon {
+    align-self: center;
+    width: 16px;
+    height: 14px;
+  }
+
+  @media screen and (min-width: 832px) {
+    width: 216px;
+    font-size: 14px;
+
+    &__icon {
+      width: 12px;
+      height: 10px;
+    }
+  }
+
+  &--secondary {
+    border: 1px solid #F7FBFF;
+    color: #F7FBFF;
+
+    .button {
+      &__icon {
+        content: url('~/assets/icons/arrowRightWhite.svg')
+      }
+    }
+  }
+
+  &--primary {
+    border: 1px solid #0082FF;
+  }
+
+  &:hover {
+    border-color: #FF9E00;
+
+    .button__icon {
+      content: url('~/assets/icons/arrowRightOrange.svg');
+    }
+  }
+
+  &:active {
+    border-color: #FF9E00;
+    color: #FF9E00;
+
+    .button__icon {
+      content: url('~/assets/icons/arrowRightOrange.svg');
+    }
+  }
+}

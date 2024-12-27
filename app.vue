@@ -28,4 +28,7 @@ img
 .extralight
   font-family: 'ppmori-extralight', sans-serif
 
+.ldtech
+  font-family: 'ldtech', sans-serif
+
 </style>
