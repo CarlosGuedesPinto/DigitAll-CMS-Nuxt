@@ -28,7 +28,7 @@
 
     .button {
       &__icon {
-        content: url('~/assets/icons/arrowRightWhite.svg')
+        content: url('~/assets/icons/ArrowRightWhite.svg')
       }
     }
   }
@@ -41,7 +41,7 @@
     border-color: #FF9E00;
 
     .button__icon {
-      content: url('~/assets/icons/arrowRightOrange.svg');
+      content: url('~/assets/icons/ArrowRightOrange.svg');
     }
   }
 
@@ -50,7 +50,7 @@
     color: #FF9E00;
 
     .button__icon {
-      content: url('~/assets/icons/arrowRightOrange.svg');
+      content: url('~/assets/icons/ArrowRightOrange.svg');
     }
   }
 }
