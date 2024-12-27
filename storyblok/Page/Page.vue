@@ -15,7 +15,7 @@ const props = defineProps({
 });
 
 const containerClass = computed(() => {
-  return props.blok.body && props.blok.body[0] && props.blok.body[0].component === 'Hero'
+  return props.blok.body && props.blok.body[0] && props.blok.body[0].component === 'hero'
     ? ''
     : 'pt-16';
 });
