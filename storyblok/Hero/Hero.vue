@@ -7,7 +7,9 @@
     <div class="hero__overlay" />
     <div class="hero__content flex flex-col">
       <span class="hero__content--title ldtech" v-html="formatText(blok.title)" />
-      <Button :link="button.link.cached_url" :text="button.text" :hasIcon="button.hasIcon" :variant="button.variant" />
+      <template v-if="blok.button.length > 0">
+        <Button :link="button.link.cached_url" :text="button.text" :hasIcon="button.hasIcon" :variant="button.variant" />
+      </template>
     </div>
   </div>
 </template>
