@@ -7,7 +7,7 @@
     <div class="hero__overlay" />
     <div class="hero__content flex flex-col">
       <span class="hero__content--title ldtech" v-html="formatText(blok.title)" />
-      <Button :link="blok.link.cached_url" :text="blok.linkText" :hasIcon="blok.hasLinkIcon" variant="secondary" />
+      <Button :link="button.link.cached_url" :text="button.text" :hasIcon="button.hasIcon" :variant="button.variant" />
     </div>
   </div>
 </template>
@@ -24,5 +24,5 @@ const props = defineProps({
   },
 });
 
-console.log(props.blok);
+const button = ref(props.blok.button[0]);
 </script>
