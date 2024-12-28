@@ -6,10 +6,14 @@
   padding-right: 16px;
 
   &__title {
-    font-size: 65px;
+    font-size: 55px;
     display: inline-block;
     line-height: 1;
     width: 100%;
+
+    @media screen and (min-width: 832px) {
+      font-size: 65px;
+    }
 
     &--border {
       border-bottom: 1px solid #0082FF;
