@@ -7,6 +7,9 @@ body.no-scroll {
 
 .navigation {
   border-bottom: 1px solid #0082FF;
+  position: fixed;
+  background-color: #F7FBFF;
+  z-index: 1000;
 
   &__desktop {
     max-width: 1408px;
@@ -114,7 +117,7 @@ body.no-scroll {
   &-mobile {
     &__menu {
       background-color: #0082FF;
-      height: calc(100% - 56px);
+      height: calc(100vh - 56px);
       padding: 16px;
     }
 

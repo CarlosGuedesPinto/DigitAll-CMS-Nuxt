@@ -15,7 +15,7 @@
         <img v-if="isMenuOpen" :src="closeIcon" alt="Close Icon" />
       </button>
     </div>
-    <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col desktop:hidden justify-between overflow-scroll">
+    <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col desktop:hidden justify-between">
       <nav class="tablet:flex">
         <ul class="flex flex-col tablet:grid tablet:grid-cols-4 gap-4 text-lg font-bold tablet:max-w-[100%] w-full">
           <li
