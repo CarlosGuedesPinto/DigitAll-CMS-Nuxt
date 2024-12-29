@@ -2,12 +2,14 @@
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   modules: [
     '@nuxtjs/tailwindcss',
     ['@storyblok/nuxt', { accessToken: process.env.NUXT_PUBLIC_SB_CONTENT_DELIVERY_TOKEN }],
     '@nuxtjs/sitemap',
     '@nuxtjs/robots',
   ],
+
   runtimeConfig: {
     public: {
       NUXT_PUBLIC_SB_ENV: process.env.NUXT_PUBLIC_SB_ENV,
@@ -16,6 +18,7 @@ export default defineNuxtConfig({
       NUXT_PUBLIC_SITE_URL: process.env.NUXT_PUBLIC_SITE_URL
     }
   },
+
   sitemap: {
     hostname: process.env.NUXT_PUBLIC_SITE_URL,
     gzip: true,
@@ -24,6 +27,7 @@ export default defineNuxtConfig({
       '/api/__sitemap__/urls',
     ]
   },
+
   app: {
     head: {
       title: process.env.NUXT_PUBLIC_SITE_NAME,
@@ -33,5 +37,7 @@ export default defineNuxtConfig({
         { hid: 'digitall', name: 'DigitAll', content: 'DigitAll website' }
       ]
     }
-  }
+  },
+
+  compatibilityDate: '2024-12-29'
 });
