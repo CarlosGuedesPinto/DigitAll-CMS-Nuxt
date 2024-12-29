@@ -1,7 +1,13 @@
 .list {
-  padding: 16px;
-  border: 1px solid #0082FF;
-  border-radius: 8px;
+  padding-top: 16px;
+  display: grid;
+  grid-template-rows: 25% 75%;
+
+  &--border {
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #0082FF;
+  }
   
   &__list {
     color: #313233;

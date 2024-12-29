@@ -2,10 +2,13 @@
   <div
     v-editable="blok"
     class="list w-full flex flex-col"
+    :class="{
+      'list--border': blok.hasBorder
+    }"
   >
-    <span class="extrabold" v-html="formatText(blok.title)" />
-    <div class="extralight list__list" v-for="(item, index) in listItems" :key="index">
-      <div class="list__item">
+    <span v-if="blok.title" class="extrabold" v-html="formatText(blok.title)" />
+    <div class="extralight list__list">
+      <div class="list__item" v-for="(item, index) in listItems" :key="index">
         <img :src="arrowRightBlue" alt="dash" class="list__dash-image" />
         <span v-html="formatText(item)" />
       </div>
