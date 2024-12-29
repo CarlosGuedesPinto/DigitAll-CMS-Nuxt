@@ -1,5 +1,12 @@
 .component-table {
   overflow-x: auto;
+  font-size: 17px;
+
+  &__title {
+    font-size: 32.5px;
+    padding-bottom: 10px;
+  }
+
   &__table {
     width: 100%;
     border-collapse: separate;
@@ -14,7 +21,22 @@
     }
   }
 
+  &__footer {
+    display: flex;
+    padding-top: 10px;
+    color: #313233;
+
+    @media screen and (min-width: 1104px) {
+      width: 50%;
+    }
+  }
+
   &__header {
+
+    &--headersBlack {
+      color: #313233;
+    }
+
     td {
       padding: 10px;
       border-top: 1px solid #0082FF;

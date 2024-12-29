@@ -25,6 +25,9 @@ img
 .extrabold
   font-family: 'ppmori-extrabold', sans-serif
 
+.semibold
+  font-family: 'ppmori-semibold', sans-serif
+
 .extralight
   font-family: 'ppmori-extralight', sans-serif
 
