@@ -22,10 +22,6 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { storyblokVersion } from "~/helpers/helpers";
 
-definePageMeta({
-  middleware: "auth",
-});
-
 const { $preview } = useNuxtApp();
 
 const route = useRoute();
