@@ -1,18 +1,34 @@
 <template>
-  <div v-if="loading">
-    <p>Loading...</p>
-  </div>
-  <div v-else-if="story">
+  <div v-if="story && !loading">
     <div v-if="story.content.topbar?.length > 0">
       <StoryblokComponent
         :blok="story.content.topbar[0].reference[0].content"
+        :loading="loading"
       />
     </div>
-    <StoryblokComponent :blok="story.content" />
+    <div class="pt-[57px]">
+      <StoryblokComponent :blok="story.content" :loading="loading" />
+    </div>
     <div v-if="story.content.footer?.length > 0">
       <StoryblokComponent
         :blok="story.content.footer[0].reference[0].content"
+        :loading="loading"
       />
+    </div>
+  </div>
+  <div v-else-if="loading" class="slug__skeleton">
+    <div class="slug__skeleton--navigation">
+      <div class="skeleton skeleton-logo" />
+      <div class="skeleton skeleton-menu-item" />
+    </div>
+    <div class="slug__skeleton--content">
+      <div class="skeleton skeleton-logo" />
+    </div>
+    <div class="slug__skeleton--footer">
+      <div class="skeleton skeleton-logo" />
+      <div class="flex flex-col gap-4 w-full">
+        <div class="skeleton skeleton-menu-item" v-for="n in 6" :key="n"/>
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +37,7 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { storyblokVersion } from "~/helpers/helpers";
+import "./Slug.scss";
 
 const { $preview } = useNuxtApp();
 

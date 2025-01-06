@@ -8,7 +8,11 @@
     <div class="hero__content flex flex-col">
       <span class="hero__content--title ldtech" v-html="formatText(blok.title)" />
       <template v-if="blok.button.length > 0">
-        <Button :link="button.link.cached_url" :text="button.text" :hasIcon="button.hasIcon" :variant="button.variant" />
+        <component
+          v-for="(blok, index) in blok.button"
+          :key="index"
+          :is="blok.component"
+          :blok="blok" />
       </template>
     </div>
   </div>
@@ -17,7 +21,7 @@
 <script setup>
 import "./Hero.scss";
 import { formatText } from "~/src/helpers/text"
-import Button from "~/src/components/Button.vue";
+import Button from "~/storyblok/Button/Button.vue";
 
 const props = defineProps({
   blok: {
@@ -25,6 +29,4 @@ const props = defineProps({
     required: true,
   },
 });
-
-const button = ref(props.blok.button[0]);
 </script>

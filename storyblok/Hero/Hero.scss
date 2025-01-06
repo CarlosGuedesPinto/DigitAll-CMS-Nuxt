@@ -3,13 +3,9 @@
   background-position: center;
   background-repeat: no-repeat;
   justify-content: flex-start;
-  padding: 16px;
   position: relative;
-  height: 896px;
-
-  @media screen and (min-width: 832px) {
-    height: 1344px;
-  }
+  height: calc(100vh - 57px);
+  padding: 16px;
 
   @media screen and (min-width: 1104px) {
     height: 496px;
@@ -17,6 +13,8 @@
 
   @media screen and (min-width: 1408px) {
     height: 664px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   &__overlay {
@@ -35,15 +33,22 @@
     transform: translateY(55%);
     max-width: 1408px;
     width: 100%;
-    margin: auto;
-    padding-left: 16px;
-    padding-right: 16px;
     gap: 14px;
 
+    @media screen and (min-width: 1408px) {
+      margin: auto;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
     &--title {
-      font-size: 65px;
+      font-size: 55px;
       color: #F7FBFF;
       line-height: 62px;
+
+      @media screen and (min-width: 832px) {
+        font-size: 65px;
+      }
     }
   }
 }
