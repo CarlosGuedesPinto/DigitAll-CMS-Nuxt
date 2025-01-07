@@ -4,9 +4,11 @@
     class="hero w-full aspect-video bg-cover bg-center flex justify-center"
     :style="{ backgroundImage: `url(${blok.image.filename})` }"
   >
-    <div class="hero__overlay" />
+    <div v-if="blok.image.filename" class="hero__overlay" />
     <div class="hero__content flex flex-col">
-      <span class="hero__content--title ldtech" v-html="formatText(blok.title)" />
+      <span class="hero__content--title ldtech" :class="{
+        'hero__content--title-blue': !blok.image.filename,
+      }" v-html="formatText(blok.title)" />
       <template v-if="blok.button.length > 0">
         <component
           v-for="(blok, index) in blok.button"
