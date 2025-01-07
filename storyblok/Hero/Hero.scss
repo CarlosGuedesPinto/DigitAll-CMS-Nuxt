@@ -46,6 +46,10 @@
       color: #F7FBFF;
       line-height: 62px;
 
+      &-blue {
+        color: #0082FF;
+      }
+
       @media screen and (min-width: 832px) {
         font-size: 65px;
       }
