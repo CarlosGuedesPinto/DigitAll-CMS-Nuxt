@@ -12,9 +12,8 @@ defineProps({
 <template>
   <div class="error-page">
     <div class="error-content">
-      <h1>{{ error.statusCode }}</h1>
-      <p>{{ error.message }}</p>
-      <NuxtLink to="/" class="home-link">Voltar à HomePage</NuxtLink>
+      <h1>Ups!! Parece que alguma coisa correu mal.</h1>
+      <NuxtLink to="/" class="home-link">Voltar ao Início</NuxtLink>
     </div>
   </div>
 </template>
