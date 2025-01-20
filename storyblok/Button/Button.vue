@@ -1,21 +1,21 @@
 <template>
   <NuxtLink
-      v-if="blok.link"
-      :to="`/${blok.link.cached_url}`"
-      class="button"
-      :class="`button--${blok.variant}`"
-    >
-      {{ blok.text }}
-      <template v-if="blok.hasIcon">
-        <img :src="arrowRightBlue" alt="arrowRight" class="button__icon"/>
-      </template>
-    </NuxtLink>
-    <button v-else class="button">
-      {{ blok.text }}
-      <template v-if="blok.hasIcon">
-        <img :src="arrowRightBlue" alt="arrowRight" class="button__icon"/>
-      </template>
-    </button>
+    v-if="blok.link"
+    :to="blok.link.cached_url ? `/${blok.link.cached_url}` : blok.link"
+    class="button"
+    :class="`button--${blok.variant}`"
+  >
+    {{ blok.text }}
+    <template v-if="blok.hasIcon">
+      <img :src="arrowRightBlue" alt="arrowRight" class="button__icon"/>
+    </template>
+  </NuxtLink>
+  <button v-else class="button">
+    {{ blok.text }}
+    <template v-if="blok.hasIcon">
+      <img :src="arrowRightBlue" alt="arrowRight" class="button__icon"/>
+    </template>
+  </button>
 </template>
 
 <script setup>
@@ -28,4 +28,5 @@ const props = defineProps({
     required: true,
   },
 });
+
 </script>

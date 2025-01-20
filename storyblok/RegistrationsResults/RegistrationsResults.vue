@@ -10,20 +10,21 @@
           <td v-for="(row, index) in blok.table.thead" :key="index">
             <span v-html="formatText(row.value)" />
           </td>
-          <td v-for="(index) in blok.buttons" :key="index"/>
         </tr>
       </thead>
       <tbody class="registrations-results__body extralight">
-        <tr v-for="(row, index) in blok.table.tbody" :key="index">
-          <td class="registrations-results__row-td" v-for="(cell, index) in row.body" :key="index" :class="{
-            'forced-border-right': index + 1 === row.body.length,
+        <tr v-for="(row, rowIndex) in blok.table.tbody" :key="rowIndex">
+          <td class="registrations-results__row-td" v-for="(cell, cellIndex) in row.body.slice(0, -3)" :key="cellIndex" :class="{
+            'registrations-results__row-td--last': cellIndex === row.body.slice(0, -3).length - 1,
+            'registrations-results__row-td--last-top': rowIndex === 0 && cellIndex === row.body.slice(0, -3).length - 1,
+            'registrations-results__row-td--last-bottom': rowIndex === blok.table.tbody.length - 1 && cellIndex === row.body.slice(0, -3).length - 1,
           }">
             <span v-html="formatText(cell.value)" />
           </td>
-          <td class="registrations-results__button semibold" v-for="(button, index) in blok.buttons" :key="index">
-            <component
-              :is="button.component"
-              :blok="button" />
+          <td class="registrations-results__button semibold" v-for="(cell, cellIndex) in row.body.slice(-3)" :key="cellIndex">
+            <Button
+              :blok="parseCellValue(cell.value)"
+            />
           </td>
         </tr>
       </tbody>
@@ -34,6 +35,7 @@
 <script setup>
 import "./RegistrationsResults.scss";
 import { formatText } from '~/src/helpers/text';
+import Button from '../Button/Button.vue';
 
 const props = defineProps({
   blok: {
@@ -41,4 +43,19 @@ const props = defineProps({
     required: true,
   },
 });
+
+const parseCellValue = (value) => {
+  const match = value.match(/"([^"]+)"\s*\/\s*"([^"]+)"/);
+  if (match) {
+    const text = match[1].trim().replace(/"/g, '');
+    const link = match[2].trim();
+    
+    return {
+      text,
+      link,
+      variant: 'primary',
+      iconLeft: false,
+    };
+  }
+};
 </script>
