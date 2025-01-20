@@ -72,6 +72,16 @@
         border-left: 1px solid #0082FF;
       }
 
+      .registrations-results__row-td::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background-color: #0082FF;
+      }
+
       .registrations-results__row-td:first-child::after {
         content: '';
         position: absolute;
@@ -92,26 +102,16 @@
         &-bottom {
           border-bottom-right-radius: 8px;
         }
-      }
 
-      .registrations-results__row-td--last::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 10px;
-        bottom: 0;
-        height: 1px;
-        background-color: #0082FF;
-      }
-      
-      .registrations-results__row-td::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 1px;
-        background-color: #0082FF;
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 10px;
+          bottom: 0;
+          height: 1px;
+          background-color: #0082FF;
+        }
       }
     }
     
@@ -124,11 +124,6 @@
         border-left: 1px solid #0082FF;
         border-top-left-radius: 8px;
       }
-
-      .registrations-results__row-td:last-of-type {
-        border-right: 1px solid #0082FF;
-        border-top-right-radius: 8px;
-      }
     }
 
     tr:last-child {
@@ -138,7 +133,7 @@
 
       .registrations-results__row-td::after,
       .registrations-results__row-td:first-child::after,
-      .registrations-results__row-td:last-of-type::after {
+      .registrations-results__row-td--last::after {
         content: '';
         position: absolute;
         left: 10px;
@@ -151,11 +146,6 @@
       .registrations-results__row-td:first-child {
         border-left: 1px solid #0082FF;
         border-bottom-left-radius: 8px;
-      }
-
-      .registrations-results__row-td:last-of-type {
-        border-right: 1px solid #0082FF;
-        border-bottom-right-radius: 8px;
       }
     }
   }
