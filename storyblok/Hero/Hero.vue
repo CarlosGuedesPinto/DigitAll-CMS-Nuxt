@@ -23,7 +23,6 @@
 <script setup>
 import "./Hero.scss";
 import { formatText } from "~/src/helpers/text"
-import Button from "~/storyblok/Button/Button.vue";
 
 const props = defineProps({
   blok: {

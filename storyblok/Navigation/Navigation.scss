@@ -117,8 +117,17 @@ body.no-scroll {
   &-mobile {
     &__menu {
       background-color: #0082FF;
-      height: calc(100vh - 56px);
+      height: calc(100dvh - 56px);
       padding: 16px;
+      overflow: auto;
+    }
+
+    &__footer {
+      padding-top: 16px;
+
+      &--logo-grid {
+        max-height: 38px;
+      }
     }
 
     &__button {

@@ -47,12 +47,12 @@
           </li>
         </ul>
       </nav>
-      <div class="navigation-mobile__footer flex justify-center w-full pt-[120px]">
-        <div class="grid grid-cols-4 gap-4 items-center">
-          <img :src="logoIPBWhite" alt="LogoIPB" class="w-full h-auto" />
-          <img :src="logoIPCWhite" alt="LogoIPC" class="w-full h-auto" />
-          <img :src="logoIPPWhite" alt="LogoIPP" class="w-full h-auto" />
-          <img :src="logoIPVCWhite" alt="LogoIPVC" class="w-full h-auto" />
+      <div class="navigation-mobile__footer">
+        <div class="grid grid-cols-4 gap-4 items-center max-w-[528px] ">
+          <img :src="logoIPBWhite" alt="LogoIPB" class="w-full max-h-[38px] h-full" />
+          <img :src="logoIPCWhite" alt="LogoIPC" class="w-full max-h-[38px] h-full" />
+          <img :src="logoIPPWhite" alt="LogoIPP" class="w-full max-h-[38px] h-full" />
+          <img :src="logoIPVCWhite" alt="LogoIPVC" class="w-full max-h-[38px] h-full" />
         </div>
       </div>
     </div>
