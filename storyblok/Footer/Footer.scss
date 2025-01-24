@@ -45,10 +45,7 @@
     &--row {
       display: grid;
       line-height: 20px;
-
-      @media screen and (min-width: 832px) {
-        grid-template-rows: 0.7fr 0.5fr 1fr 0.5fr 0.5fr 1fr;
-      }
+      grid-template-rows: 0.7fr 0.5fr 1fr 0.5fr 0.8fr 1fr;
 
       &--border {
         margin: 16px 0 0 0;
@@ -57,7 +54,7 @@
         border-top: none;
 
         @media screen and (min-width: 1104px) {
-          margin: 4px 0 0 0;
+          margin: 0;
         }
 
         &:nth-child(1) {
@@ -96,7 +93,7 @@
               top: 16px;
               bottom: 0;
               left: 0;
-              width: 1px;
+              width: 0.5px;
               background-color: #F7FBFF;
             }
           }
@@ -142,7 +139,7 @@
             @media screen and (min-width: 1104px) {
               grid-template-columns: 1fr;
               border-top: none;
-              padding-top: none;
+              padding-top: 0;
               grid-template-rows: 0.5fr 1fr 0.5fr 0.5fr 1fr;
             }
 

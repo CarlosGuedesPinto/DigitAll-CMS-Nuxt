@@ -1,6 +1,16 @@
 export const formatText = (text: string) => {
+  let formattedText = text;
+
+  // Check if the text starts with /azul/
+  if (formattedText.startsWith('/azul/')) {
+    // Remove /azul/ from the text
+    formattedText = formattedText.replace('/azul/', '');
+    // Wrap the text in a span with blue color
+    formattedText = `<span style="color: #0082FF;" class="semibold">${formattedText}</span>`;
+  }
+
   // Replace newlines with <br>
-  let formattedText = text.replace(/\n/g, '<br>');
+  formattedText = formattedText.replace(/\n/g, '<br>');
 
   // Regex to find text between "()" and the next link between "[]"
   const regex = /\(([^)]+)\)\s*\[([^\]]+)\]/g;

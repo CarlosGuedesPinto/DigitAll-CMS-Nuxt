@@ -26,6 +26,11 @@
     border: 1px solid #F7FBFF;
     color: #F7FBFF;
 
+    &:hover {
+      background-color: #F7FBFF;
+      color: #0082FF;
+    }
+
     .button {
       &__icon {
         content: url('~/assets/icons/ArrowRightWhite.svg')

@@ -31,10 +31,10 @@
           :key="row.uid"
           class="footer__rows--row footer__rows--row--border flex flex-col gap-4"
         >
-          <div>
+          <div class="footer__rows--row-image self-center">
             <img :src="row.logo.filename" :alt="row.logo.alt" loading="lazy" class=""/>
           </div>
-
+          
           <NuxtLink 
             class="extrabold" 
             :to="row.website.cached_url" 

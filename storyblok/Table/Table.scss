@@ -1,5 +1,9 @@
 .component-table {
-  font-size: 17px;
+  font-size: 14px;
+
+  @media screen and (min-width: 832px) {
+    font-size: 17px;
+  }
 
   &__title {
     font-size: 32.5px;
