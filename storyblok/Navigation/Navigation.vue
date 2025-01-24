@@ -1,7 +1,7 @@
 <template>
   <header :class="{
     'navigation--white-border': isMenuOpen,
-  }" class="navigation w-full grid" v-if="items.length > 0">
+  }" class="navigation w-full grid">
     <!-- Mobile -->
     <div class="h-full w-full flex justify-between px-4 pt-4 pb-[10px] desktop:hidden" :class="{
       'bg-[#0082FF]': isMenuOpen,
@@ -15,7 +15,7 @@
         <img v-if="isMenuOpen" :src="closeIcon" alt="Close Icon" />
       </button>
     </div>
-    <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col desktop:hidden justify-between">
+    <div v-if="isMenuOpen && items.length > 0" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col desktop:hidden justify-between">
       <nav class="tablet:flex">
         <ul class="flex flex-col tablet:grid tablet:grid-cols-4 gap-4 text-lg font-bold tablet:max-w-[100%] w-full">
           <li
@@ -65,6 +65,7 @@
         <nav>
           <ul class="flex gap-4 text-lg font-bold navigation__nav-link relative">
             <li
+              v-if="items.length > 0"
               v-for="item in items"
               :key="item._uid"
               :class="['navigation__nav-item flex', { 'navigation__nav-item--active': isItemActive(item.slug, item.submenus && item.submenus.length > 0) }]"
@@ -116,7 +117,7 @@ import logoIPVCWhite from "~/assets/logos/LogoIPVCWhite.svg";
 const props = defineProps({
   blok: {
     type: Object,
-    required: true,
+    required: false,
   },
 });
 
@@ -184,7 +185,9 @@ const isItemActive = (slug, hasSubmenus) => {
 };
 
 onMounted(async () => {
-  await fetchSlugs();
+  if (props.blok) {
+    await fetchSlugs();
+  }
   window.addEventListener('resize', updateScreenWidth);
 });
 

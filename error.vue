@@ -1,59 +1,80 @@
 <script setup>
 import { defineProps } from "vue";
+import Button from "./storyblok/Button/Button.vue";
+import Navigation from "./storyblok/Navigation/Navigation.vue";
+import { storyblokVersion } from "~/helpers/helpers";
 
-defineProps({
+const props = defineProps({
   error: {
     type: Object,
     required: true,
   },
 });
+
+const storyblokApi = useStoryblokApi();
+const story = ref(null);
+const loading = ref(true);
+const resolveRelations = [
+  "global_reference.reference",
+];
+
+const fetchStory = async () => {
+  try {
+    const slug = "home";
+    const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
+      version: storyblokVersion(),
+      resolve_relations: resolveRelations,
+    });
+
+    story.value = data.story;
+  } catch (error) {
+    console.error("Erro ao buscar historia:", error);
+  } finally {
+    loading.value = false;
+  }
+};
+
+onMounted(async () => {
+  await fetchStory();
+});
 </script>
 
 <template>
+  <Navigation 
+    :blok="story.content.topbar[0].reference[0].content"
+    :loading="loading"/>
   <div class="error-page">
-    <div class="error-content">
-      <h1>Ups!! Parece que alguma coisa correu mal.</h1>
-      <NuxtLink to="/" class="home-link">Voltar ao Início</NuxtLink>
+    <h1 class="">Ups!! Parece que alguma coisa correu mal.</h1>
+    <Button :blok="{
+      text: 'Voltar ao Início',
+      link: '/',
+      variant: 'primary',
+      iconLeft: false,
+      hasIcon: true,
+    }">Voltar ao Início</Button>
     </div>
-  </div>
 </template>
 
 <style scoped>
 .error-page {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
   height: 100vh;
-  background-color: #f7f6fd;
-  color: #333;
-  text-align: center;
+  padding-left: 16px;
+  max-width: 1408px;
+  width: 100%;
+  justify-self: center;
 }
 
 .error-content {
-  max-width: 600px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
+  @media screen and (min-width: 1104px) {
+    max-width: 50%;
+  };
 }
 
 h1 {
-  font-size: 4rem;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-
-.home-link {
-  font-size: 1.2rem;
-  color: #007bff;
-  text-decoration: none;
-}
-
-.home-link:hover {
-  text-decoration: underline;
+  font-size: 65px;
+  margin-bottom: 22px;
 }
 </style>
