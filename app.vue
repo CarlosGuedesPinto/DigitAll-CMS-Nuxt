@@ -34,4 +34,10 @@ img
 .ldtech
   font-family: 'ldtech', sans-serif
 
+.blue-text 
+  color: #0082FF
+
+.blue-text:hover
+  color: #FF9E00
+
 </style>
