@@ -11,8 +11,8 @@
           <img v-if="!isMenuOpen" :src="logo" alt="Logo" width="160px" height="30px"/>
           <img v-if="isMenuOpen" :src="logoWhite" alt="Logo" width="160px" height="30px"/>
         </NuxtLink>
-        <img v-if="!isMenuOpen && primaryComplementaryImage" :src="primaryComplementaryImage.filename" alt="Primary Complementary Image" class="max-w-[130px] max-h-[24px] self-center" />
-        <img v-if="isMenuOpen && secondaryComplementaryImage" :src="secondaryComplementaryImage.filename" alt="Secondary Complementary Image" class="max-w-[130px] max-h-[24px] self-center" />
+        <img v-if="!isMenuOpen && hasAnyComplementaryImage" :src="(primaryComplementaryImage.filename || secondaryComplementaryImage.filename)" alt="Primary Complementary Image" class="max-w-[130px] max-h-[24px] self-center" />
+        <img v-if="isMenuOpen && hasAnyComplementaryImage" :src="(secondaryComplementaryImage.filename || primaryComplementaryImage.filename)" alt="Secondary Complementary Image" class="max-w-[130px] max-h-[24px] self-center" />
       </div>
       <button @click="toggleMenu" class="navigation-mobile__button">
         <img v-if="!isMenuOpen" :src="burguerIcon" alt="Burguer Icon" />
@@ -67,7 +67,7 @@
           <NuxtLink to="/">
             <img :src="logo" alt="Logo" width="216px" height="40.5px"/>
           </NuxtLink>
-          <img v-if="primaryComplementaryImage" :src="primaryComplementaryImage.filename" alt="Primary Complementary Image" class="max-w-[130px] max-h-[24px] self-center" />
+          <img v-if="hasAnyComplementaryImage" :src="(primaryComplementaryImage.filename || secondaryComplementaryImage.filename)" alt="Primary Complementary Image" class="max-w-[130px] max-h-[24px] self-center" />
         </div>
         <nav>
           <ul class="flex gap-4 text-lg font-bold navigation__nav-link relative">
@@ -198,6 +198,10 @@ const isItemActive = (slug, hasSubmenus) => {
   }
 
   return route.currentRoute.value.path === slug;
+};
+
+const hasAnyComplementaryImage = () => {
+  return props.primaryComplementaryImage || props.secondaryComplementaryImage;
 };
 
 onMounted(async () => {
