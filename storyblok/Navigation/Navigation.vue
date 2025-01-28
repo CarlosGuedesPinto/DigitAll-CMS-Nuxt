@@ -6,10 +6,14 @@
     <div class="h-full w-full flex justify-between px-4 pt-4 pb-[10px] desktop:hidden" :class="{
       'bg-[#0082FF]': isMenuOpen,
     }">
-      <NuxtLink to="/">
-        <img v-if="!isMenuOpen" :src="logo" alt="Logo" width="160px" height="30px"/>
-        <img v-if="isMenuOpen" :src="logoWhite" alt="Logo" width="160px" height="30px"/>
-      </NuxtLink>
+      <div class="flex gap-4">
+        <NuxtLink to="/">
+          <img v-if="!isMenuOpen" :src="logo" alt="Logo" width="160px" height="30px"/>
+          <img v-if="isMenuOpen" :src="logoWhite" alt="Logo" width="160px" height="30px"/>
+        </NuxtLink>
+        <img v-if="!isMenuOpen && primaryComplementaryImage" :src="primaryComplementaryImage.filename" alt="Primary Complementary Image" class="max-w-[130px] max-h-[24px] self-center" />
+        <img v-if="isMenuOpen && secondaryComplementaryImage" :src="secondaryComplementaryImage.filename" alt="Secondary Complementary Image" class="max-w-[130px] max-h-[24px] self-center" />
+      </div>
       <button @click="toggleMenu" class="navigation-mobile__button">
         <img v-if="!isMenuOpen" :src="burguerIcon" alt="Burguer Icon" />
         <img v-if="isMenuOpen" :src="closeIcon" alt="Close Icon" />
@@ -59,9 +63,12 @@
     <!-- Desktop -->
     <div class="navigation__desktop h-full w-full px-4 pt-4 pb-[7.5px] hidden desktop:flex">
       <div class="navigation__desktop--content w-full flex justify-between">
-        <NuxtLink to="/">
-          <img :src="logo" alt="Logo" width="216px" height="40.5px"/>
-        </NuxtLink>
+        <div class="flex gap-4">
+          <NuxtLink to="/">
+            <img :src="logo" alt="Logo" width="216px" height="40.5px"/>
+          </NuxtLink>
+          <img v-if="primaryComplementaryImage" :src="primaryComplementaryImage.filename" alt="Primary Complementary Image" class="max-w-[130px] max-h-[24px] self-center" />
+        </div>
         <nav>
           <ul class="flex gap-4 text-lg font-bold navigation__nav-link relative">
             <li
@@ -113,9 +120,18 @@ import logoIPBWhite from "~/assets/logos/LogoIPBWhite.svg";
 import logoIPCWhite from "~/assets/logos/LogoIPCWhite.svg";
 import logoIPPWhite from "~/assets/logos/LogoIPPWhite.svg";
 import logoIPVCWhite from "~/assets/logos/LogoIPVCWhite.svg";
+import { preloadImages } from "~/src/helpers/image";
 
 const props = defineProps({
   blok: {
+    type: Object,
+    required: false,
+  },
+  primaryComplementaryImage: {
+    type: Object,
+    required: false,
+  },
+  secondaryComplementaryImage: {
     type: Object,
     required: false,
   },
@@ -189,6 +205,19 @@ onMounted(async () => {
     await fetchSlugs();
   }
   window.addEventListener('resize', updateScreenWidth);
+
+  preloadImages([
+    logo,
+    logoWhite,
+    burguerIcon,
+    closeIcon,
+    logoIPBWhite,
+    logoIPCWhite,
+    logoIPPWhite,
+    logoIPVCWhite,
+    props.primaryComplementaryImage?.filename,
+    props.secondaryComplementaryImage?.filename,
+  ].filter(Boolean));
 });
 
 onUnmounted(() => {

@@ -7,25 +7,28 @@
   >
     <div v-if="blok.image.filename" class="hero__overlay" />
     <div class="hero__content flex flex-col">
-      <span class="hero__content--title ldtech" :class="{
-        'hero__content--title-blue': !blok.image.filename,
-      }" v-html="formatText(blok.title)" />
-      <template v-if="blok.button.length > 0">
-        <component
-          v-for="(buttonBlok, index) in blok.button"
-          :key="index"
-          :is="buttonBlok.component"
-          :blok="buttonBlok"
-          :is-anchor="blok.isAnchorButton"
-          @clicked="scroll" />
-      </template>
+      <div class="hero__content--container">
+        <span class="hero__content--title ldtech" :class="{
+          'hero__content--title-blue': !blok.image.filename,
+        }" v-html="formatText(blok.title)" />
+        <template v-if="blok.button.length > 0">
+          <component
+            v-for="(buttonBlok, index) in blok.button"
+            :key="index"
+            :is="buttonBlok.component"
+            :blok="buttonBlok"
+            :is-anchor="blok.isAnchorButton"
+            @clicked="scroll" />
+        </template>
+      </div>
     </div>
   </div>
 </template>
   
 <script setup>
 import "./Hero.scss";
-import { formatText } from "~/src/helpers/text"
+import { formatText } from "~/src/helpers/text";
+import { preloadImages } from "~/src/helpers/image";
 
 const props = defineProps({
   blok: {
@@ -47,4 +50,11 @@ const scroll = (event) => {
     });
   }
 };
+
+onMounted(() => {
+  preloadImages([
+    props.blok.image.filename,
+    ...props.blok.button.map(buttonBlok => buttonBlok.image?.filename).filter(Boolean)
+  ]);
+});
 </script>

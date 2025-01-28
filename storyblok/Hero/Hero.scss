@@ -24,20 +24,24 @@
   }
 
   &__content {
-    position: absolute;
+    position: relative;
     top: 55%;
     z-index: 1;
     max-width: 1408px;
+    width: 100%;
     height: min-content;
-    width: calc(100% - 32px);
     gap: 14px;
 
-    @media screen and (min-width: 1104px) {
-      width: calc(60% - 32px);
+    &--container {
+      width: calc(100% - 32px);
+      @media screen and (min-width: 1104px) {
+        width: calc(60% - 32px);
+      }
     }
 
     @media screen and (min-width: 1408px) {
-      margin: auto;
+      margin-left: auto;
+      margin-right: auto;
       padding-left: 16px;
       padding-right: 16px;
     }

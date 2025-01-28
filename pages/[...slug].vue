@@ -3,6 +3,8 @@
     <div v-if="story.content.topbar?.length > 0">
       <StoryblokComponent
         :blok="story.content.topbar[0].reference[0].content"
+        :primary-complementary-image="story.content.complementaryImagePrimary"
+        :secondary-complementary-image="story.content.complementaryImageSecondary"
         :loading="loading"
       />
     </div>
