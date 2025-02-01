@@ -4,7 +4,7 @@
     v-editable="blok"
     class="title-content w-full"
   >
-    <span class="title-content__title ldtech" :class="{
+    <span v-if="blok.title" class="title-content__title ldtech" :class="{
       'title-content__title--border': blok.content.length > 0
     }"
      v-html="formatText(blok.title)" />

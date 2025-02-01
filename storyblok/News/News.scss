@@ -13,7 +13,7 @@
     grid-template-rows: repeat(4, auto);
 
     @media screen and (min-width: 832px) {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       grid-template-rows: auto auto;
     }
 
@@ -24,7 +24,10 @@
   }
 
   &__item {
-    min-width: 256px;
+    max-width: 528px;
+    @media screen and (min-width: 832px) {
+      min-width: 256px;
+    }
   }
 
   &__title {

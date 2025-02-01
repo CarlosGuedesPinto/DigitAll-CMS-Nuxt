@@ -1,8 +1,15 @@
 <template>
-  <div v-editable="blok" class="news-page gap-16 flex flex-col pb-16" :class="containerClass">
-    <Image :blok="blok" />
-    <TitleContent :blok="titleContentBlok" />
-    <div class="news-page__component" v-for="blok in blok.body" :key="blok._uid">
+  <div v-editable="blok" class="news-page flex flex-col pb-16 pt-4">
+    <div class="news-page__image-container">
+      <div class="news-page__image-overlay" />
+      <img
+        :src="blok.image.filename"
+        :alt="blok.image.alt"
+        class="w-full news-page__image h-full"
+      />
+    </div>
+    <TitleContent :blok="titleContentBlok" class="news-page__primary-text pt-[50px]"/>
+    <div class="news-page__content" v-for="blok in blok.body" :key="blok._uid">
       <StoryblokComponent :blok="blok" />
     </div>
   </div>
@@ -11,20 +18,13 @@
 <script setup>
 import TitleContent from '../TitleContent/TitleContent.vue';
 import Image from '../Image/Image.vue';
+import './NewsPage.scss';
 
 const props = defineProps({
   blok: {
     type: Object,
     required: true,
   },
-});
-
-console.log('props', props.blok);
-
-const containerClass = computed(() => {
-  return props.blok.body && props.blok.body[0] && props.blok.body[0].component === 'hero'
-    ? ''
-    : 'pt-16';
 });
 
 const titleContentBlok = {

@@ -1,6 +1,14 @@
 .slug {
-  &__skeleton {
 
+  &__content {
+    padding-top: 56px;
+
+    @media screen and (min-width: 1408px) {
+      padding-top: 64px;
+    }
+  }
+
+  &__skeleton {
     gap: 64px;
     display: flex;
     flex-direction: column;

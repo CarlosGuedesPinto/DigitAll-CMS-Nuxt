@@ -20,5 +20,36 @@ export const formatText = (text: string) => {
     return `<a href="${p2}" target="_blank" style="text-decoration: underline;">${p1}</a>`;
   });
 
+  // Handle lists
+  if (formattedText.includes('(-)')) {
+    const lines = formattedText.split('<br>');
+    let result = '';
+    let listItems = '';
+    let insideList = false;
+
+    lines.forEach(line => {
+      if (line.trim().startsWith('(-)')) {
+        if (!insideList) {
+          insideList = true;
+          result += '<ul>';
+        }
+        listItems += `<li>${line.replace('(-)', '').trim()}</li>`;
+      } else {
+        if (insideList) {
+          insideList = false;
+          result += `${listItems}</ul>`;
+          listItems = '';
+        }
+        result += `${line}<br>`;
+      }
+    });
+
+    if (insideList) {
+      result += `${listItems}</ul>`;
+    }
+
+    formattedText = result.replace(/(<br>)+$/, '');
+  }
+
   return formattedText;
 };

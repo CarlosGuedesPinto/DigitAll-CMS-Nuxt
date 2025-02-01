@@ -13,6 +13,7 @@ body.no-scroll {
 
   &__desktop {
     max-width: 1408px;
+    height: 64px;
     justify-self: center;
   }
 
@@ -115,6 +116,7 @@ body.no-scroll {
   }
 
   &-mobile {
+    height: 56px;
     &__menu {
       background-color: #0082FF;
       height: calc(100dvh - 56px);

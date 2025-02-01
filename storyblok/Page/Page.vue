@@ -20,6 +20,3 @@ const containerClass = computed(() => {
     : 'pt-16';
 });
 </script>
-
-<style>
-</style>

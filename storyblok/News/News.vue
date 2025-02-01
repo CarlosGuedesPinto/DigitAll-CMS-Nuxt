@@ -1,7 +1,7 @@
 <template>
   <div v-if="!loading" v-editable="blok" class="news">
     <span class="news__title ldtech" v-html="formatText(blok.title)" />
-    <div class="news__container">
+    <div class="news__container" :class="`news__container--${news.length}`">
       <Card v-for="item in news" :key="item._uid" :item="item" class="news__item"/>
     </div>
   </div>

@@ -20,8 +20,7 @@ const resolveRelations = [
 
 const fetchStory = async () => {
   try {
-    const slug = "home";
-    const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
+    const { data } = await storyblokApi.get(`cdn/stories/home`, {
       version: storyblokVersion(),
       resolve_relations: resolveRelations,
     });
@@ -40,7 +39,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Navigation 
+  <Navigation
+    v-if="story?.content"
     :blok="story.content.topbar[0].reference[0].content"
     :loading="loading"/>
   <div class="error-page">

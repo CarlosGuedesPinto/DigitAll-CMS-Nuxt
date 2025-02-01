@@ -8,7 +8,7 @@
         :loading="loading"
       />
     </div>
-    <div class="pt-[57px]">
+    <div class="slug__content">
       <StoryblokComponent :blok="story.content" :loading="loading" />
     </div>
     <div v-if="story.content.footer?.length > 0">

@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   height: 476px;
+  justify-content: space-between;
 
   &__image {
     aspect-ratio: 16/9;
@@ -52,5 +53,26 @@
     color: #313233;
     flex: 1 1 auto;
     overflow: hidden;
+  }
+
+  &:hover {
+    border: 1px solid #FF9E00 !important;
+    .card {
+      &__image-overlay {
+        background-color: #FF9E00;
+      }
+
+      &__title {
+        color: #FF9E00;
+      }
+
+      &__button-text {
+        color: #FF9E00;
+      }
+      
+      &__icon{
+        content: url('~/assets/icons/ArrowRightOrange.svg');
+      }
+    }
   }
 }

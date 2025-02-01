@@ -1,27 +1,26 @@
 <template>
-  <div class="card" >
-    <div v-if="item.image" class="card__image-container">
-      <div class="card__image-overlay" />
-      <img
-        :src="item.image.filename"
-        :alt="item.image.alt"
-        class="w-full card__image h-full"
-        loading="lazy"
-      />
-    </div>
-    <div class="card__content flex flex-col gap-4">
-      <span class="card__title extrabold">{{ item.title }}</span>
-      <span class="card__text extralight">{{ item.primaryText }}</span>
+  <NuxtLink :to="`/${item.redirect}`">
+    <div class="card">
+        <div v-if="item.image" class="card__image-container">
+          <div class="card__image-overlay" />
+          <img
+            :src="item.image.filename"
+            :alt="item.image.alt"
+            class="w-full card__image h-full"
+            loading="lazy"
+          />
+        </div>
+        <div class="card__content flex flex-col gap-4">
+          <span class="card__title extrabold">{{ item.title }}</span>
+          <span class="card__text extralight">{{ item.primaryText }}</span>
 
-      <NuxtLink
-        class="justify-between flex extrabold"
-        :to="`/${item.redirect}`"
-      >
-        <span>Saber mais</span>
-        <img :src="arrowRightBlue" alt="arrowRight" class="card__icon"/>
-      </NuxtLink>
+          <div class="justify-between flex extrabold">
+            <span class="card__button-text">Saber mais</span>
+            <img :src="arrowRightBlue" alt="arrowRight" class="card__icon"/>
+          </div>
+        </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
   
 <script setup>
