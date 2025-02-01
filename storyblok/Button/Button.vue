@@ -3,14 +3,26 @@
     v-if="blok.link && !isAnchor"
     :to="blok.link.cached_url ? `/${blok.link.cached_url}` : blok.link"
     class="button"
-    :class="`button--${blok.variant}`"
+    :class="[`button--${blok.variant}`, {
+      '!justify-center': isCentered,
+      'button--disabled': disabled,
+    }]" 
+    :disabled="disabled"
   >
     {{ blok.text }}
     <template v-if="blok.hasIcon">
       <img :src="arrowRightBlue" alt="arrowRight" class="button__icon"/>
     </template>
   </NuxtLink>
-  <button v-else class="button" :class="`button--${blok.variant}`" @click="handleClick">
+  <button 
+    v-else 
+    class="button" 
+    :class="[`button--${blok.variant}`, {
+      '!justify-center': isCentered,
+      'button--disabled': disabled,
+    }]" 
+    @click="handleClick"
+    :disabled="disabled">
     {{ blok.text }}
     <template v-if="blok.hasIcon">
       <img :src="arrowRightBlue" alt="arrowRight" class="button__icon"/>
@@ -31,13 +43,19 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  isCentered: {
+    type: Boolean,
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(['clicked']);
 
 const handleClick = (event) => {
-  if (props.isAnchor) {
-    emit('clicked', event);
-  }
+  emit('clicked', event);
 };
 </script>

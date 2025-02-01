@@ -1,4 +1,9 @@
 export const formatText = (text: string) => {
+
+  if (!text) {
+    return text;
+  }
+
   let formattedText = text;
 
   // Check if the text starts with /azul/
