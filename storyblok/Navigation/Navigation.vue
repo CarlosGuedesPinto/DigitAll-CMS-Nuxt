@@ -200,7 +200,7 @@ const isItemActive = (slug, hasSubmenus) => {
   return route.currentRoute.value.path === slug;
 };
 
-const hasAnyComplementaryImage = !!props.primaryComplementaryImage || !!props.secondaryComplementaryImage;
+const hasAnyComplementaryImage = !!props.primaryComplementaryImage.id || !!props.secondaryComplementaryImage.id;
 
 onMounted(async () => {
   if (props.blok) {
