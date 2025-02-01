@@ -48,7 +48,7 @@ export const formatText = (text: string) => {
       result += `${listItems}</ul>`;
     }
 
-    formattedText = result.replace(/(<br>)+$/, '');
+    formattedText = result;
   }
 
   return formattedText;
