@@ -6,7 +6,7 @@
     </div>
     <Pagination :currentPage="currentPage" :totalPages="totalPages" :hasNextPage="hasNextPage" @key="currentPage" @pageChange="changePage"/>
   </div>
-  <div v-else-if="loading" class="news__skeleton">
+  <div v-else-if="loading" class="news-gallery__skeleton">
     <div class="news-gallery__skeleton--container">
       <div v-for="skeleton in 12" class="skeleton skeleton-card" />
     </div>
