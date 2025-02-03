@@ -47,7 +47,7 @@
             <NuxtLink v-else :to="item.slug" @click="toggleMenu" :class="['navigation-mobile__nav-item flex w-full', { 'navigation-mobile__nav-item--active': isItemActive(item.slug, item.submenus && item.submenus.length > 0) }]">{{ item.title }}</NuxtLink>
           </li>
           <li class="flex">
-            <NuxtLink :to="blok.moodleLink.url ? blok.moodleLink.url : `/${blok.moodleLink.cached_url}`" @click="toggleMenu" class="navigation-mobile__nav-item w-full">Moodle</NuxtLink>
+            <NuxtLink :to="blok.moodleLink.url ? blok.moodleLink.url : `/${blok.moodleLink.cached_url}`" @click="toggleMenu" target="_blank" class="navigation-mobile__nav-item w-full">Moodle</NuxtLink>
           </li>
         </ul>
       </nav>
@@ -98,7 +98,7 @@
               </template>
             </li>
             <li class="flex">
-              <NuxtLink :to="blok.moodleLink.url ? blok.moodleLink.url : `/${blok.moodleLink.cached_url}`" class="navigation__nav-item navigation__nav-item--moodle">Moodle</NuxtLink>
+              <NuxtLink :to="blok.moodleLink.url ? blok.moodleLink.url : `/${blok.moodleLink.cached_url}`" target="_blank" class="navigation__nav-item navigation__nav-item--moodle">Moodle</NuxtLink>
             </li>
           </ul>
         </nav>

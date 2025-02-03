@@ -12,6 +12,11 @@
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, auto);
 
+    @media screen and (min-width: 528px) {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+    }
+
     @media screen and (min-width: 832px) {
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: auto auto;
@@ -31,14 +36,24 @@
   }
 
   &__title {
-    display: flex;
     font-size: 55px;
     line-height: 1;
-    border-bottom: 1px solid #0082FF;
-    width: 100%;
+    width: min-content;
 
     @media screen and (min-width: 832px) {
       font-size: 65px;
+      width: auto;
+    }
+
+    &--container {
+      border-bottom: 1px solid #0082FF;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &--cta {
+      align-self: flex-end;
+      text-align: right;
     }
   }
 

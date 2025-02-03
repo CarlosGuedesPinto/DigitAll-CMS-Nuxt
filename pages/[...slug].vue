@@ -86,4 +86,19 @@ onMounted(async () => {
     });
   }
 });
+
+watch(story, (newStory) => {
+  if (newStory) {
+    const text = `Digit'All - ${newStory.name}` || "Digit'All";
+    useHead({
+      title: text,
+      meta: [
+        {
+          name: "description",
+          content: text,
+        },
+      ],
+    });
+  }
+});
 </script>

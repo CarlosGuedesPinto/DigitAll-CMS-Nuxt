@@ -5,12 +5,12 @@
     :style="{ backgroundImage: `url(${blok.image.filename})` }"
     ref="hero"
   >
-    <div v-if="blok.image.filename" class="hero__overlay" />
+    <div class="hero__overlay" :class="{
+      'hero__overlay--no-opacity': !blok.image.filename,
+    }" />
     <div class="hero__content flex flex-col">
       <div class="hero__content--container">
-        <span class="hero__content--title ldtech" :class="{
-          'hero__content--title-blue': !blok.image.filename,
-        }" v-html="formatText(blok.title)" />
+        <span class="hero__content--title ldtech" v-html="formatText(blok.title)" />
         <template v-if="blok.button.length > 0">
           <component
             v-for="(buttonBlok, index) in blok.button"

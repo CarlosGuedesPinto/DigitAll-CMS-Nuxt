@@ -40,7 +40,6 @@
   }
 
   &__header {
-
     &--headersBlack {
       color: #313233;
     }
@@ -155,6 +154,16 @@
         height: 1px;
         background-color: #0082FF;
       }
+
+      .td--scroll-second::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background-color: #0082FF;
+      }
     }
   }
 }
@@ -166,7 +175,7 @@
   z-index: 1;
   text-align: left;
 
-  &--second::before {
+  &::before {
     content: '';
     position: absolute;
     top: 8px;

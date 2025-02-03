@@ -25,6 +25,8 @@ export const formatText = (text: string) => {
     return `<a href="${p2}" target="_blank" style="text-decoration: underline;">${p1}</a>`;
   });
 
+  formattedText = formattedText.replace(/<bold>(.*?)<bold>/g, '<span class="extrabold">$1</span>');
+
   // Handle lists
   if (formattedText.includes('(-)')) {
     const lines = formattedText.split('<br>');
