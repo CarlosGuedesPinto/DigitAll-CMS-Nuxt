@@ -22,6 +22,24 @@ body
 img
   max-width: unset
 
+ul 
+    list-style-type: disc
+    padding-left: 15px
+
+    li::marker
+      font-size: 15px
+
+ol
+  padding-left: 15px
+  list-style-type: decimal
+
+  &[type="a"]
+    list-style-type: lower-alpha
+
+  &[type="i"]
+    list-style-type: lower-roman
+    
+
 .extrabold
   font-family: 'ppmori-extrabold', sans-serif
 
@@ -39,5 +57,6 @@ img
 
 .blue-text:hover
   color: #FF9E00
+  
 
 </style>

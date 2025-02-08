@@ -4,7 +4,7 @@
     class="component-table"
   >
     <span v-if="blok.title" class="ldtech component-table__title" v-html="formatText(blok.title)" />
-    <div class="component-table__table" ref="tableContainer">
+    <div class="component-table__table" ref="tableContainer" v-if="blok.orientation === 'vertical'">
       <table>
         <thead>
           <tr class="component-table__header extrabold" :class="{ 'component-table__header--headersBlack': blok.tableHeadersColor === 'black' }"> 
@@ -21,6 +21,20 @@
             <td v-for="(cell, index) in row.body" :key="index" :class="{
                 'sticky-cell': index === 0 && blok.hasFirstLockedColumn,
                 'td--scroll-second': index === 1 && blok.hasFirstLockedColumn,
+              }">
+              <span v-html="formatText(cell.value)" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="component-table__table" ref="tableContainer" v-else>
+      <table>
+        <tbody class="component-table__body component-table__horizontal extralight">
+          <tr v-for="(row, index) in blok.table.tbody" :key="index">
+            <td v-for="(cell, index) in row.body" :key="index" :class="{
+                'semibold content-start': index === 0 && blok.tableHeadersColor === 'black',
+                'semibold content-start component-table__blue-content': index === 0 && blok.tableHeadersColor === 'blue',
               }">
               <span v-html="formatText(cell.value)" />
             </td>

@@ -4,10 +4,12 @@
     v-editable="blok"
     class="title-content w-full"
   >
-    <span v-if="blok.title" class="title-content__title ldtech" :class="{
-      'title-content__title--border': blok.content.length > 0
-    }"
-     v-html="formatText(blok.title)" />
+    <div class="title-content__title-wrapper" :class="{
+        'title-content__title-wrapper--border': blok.content.length > 0
+      }">
+      <span v-if="blok.title" class="title-content__title ldtech"  v-html="formatText(blok.title)" />
+      <NuxtLink v-if="blok.link" class="extrabold self-end text-right" :to="blok.link.url ? blok.link.url : `/${blok.link.cached_url}`">{{ blok.linkLabel }}</NuxtLink>
+    </div>
     <div v-if="blok.content.length > 0" class="title-content__content">
       <component
         v-for="(blok, index) in blok.content"
@@ -39,4 +41,6 @@ const props = defineProps({
     default: false,
   },
 });
+
+console.log(props);
 </script>

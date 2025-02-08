@@ -166,6 +166,14 @@
       }
     }
   }
+
+  &__horizontal {
+    text-align: left;
+  }
+
+  &__blue-content {
+    color: #0082FF;
+  }
 }
 
 .sticky-cell {
@@ -173,7 +181,6 @@
   left: 0;
   background-color: #F7FBFF;
   z-index: 1;
-  text-align: left;
 
   &::before {
     content: '';

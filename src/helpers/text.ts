@@ -6,28 +6,21 @@ export const formatText = (text: string) => {
 
   let formattedText = text;
 
-  // Check if the text starts with /azul/
   if (formattedText.startsWith('/azul/')) {
-    // Remove /azul/ from the text
     formattedText = formattedText.replace('/azul/', '');
-    // Wrap the text in a span with blue color
     formattedText = `<span class="blue-text semibold">${formattedText}</span>`;
   }
 
-  // Replace newlines with <br>
   formattedText = formattedText.replace(/\n/g, '<br>');
 
-  // Regex to find text between "()" and the next link between "[]"
   const regex = /\(([^)]+)\)\s*\[([^\]]+)\]/g;
 
-  // Replace the matched text with an anchor tag
   formattedText = formattedText.replace(regex, (match, p1, p2) => {
     return `<a href="${p2}" target="_blank" style="text-decoration: underline;">${p1}</a>`;
   });
 
   formattedText = formattedText.replace(/<bold>(.*?)<bold>/g, '<span class="extrabold">$1</span>');
 
-  // Handle lists
   if (formattedText.includes('(-)')) {
     const lines = formattedText.split('<br>');
     let result = '';
@@ -41,6 +34,7 @@ export const formatText = (text: string) => {
           result += '<ul>';
         }
         listItems += `<li>${line.replace('(-)', '').trim()}</li>`;
+        
       } else {
         if (insideList) {
           insideList = false;
@@ -57,6 +51,61 @@ export const formatText = (text: string) => {
 
     formattedText = result;
   }
+
+  if (formattedText.includes('(1.)')) {
+    const lines = formattedText.split('<br>');
+    let result = '';
+    let linesStack: number[] = [];
+
+    const isNumberedList = (line: string) => /^\(\d+\.\)/.test(line);
+    const isLetteredList = (line: string) => /^\([a-h]\.\)/.test(line);
+    const isRomanList = (line: string) => /^\([ivxlcdm]+\.\)/i.test(line);
+
+    lines.forEach(line => {
+      if(isNumberedList(line)) {
+        linesStack.push(1);
+      }
+      else if(isLetteredList(line)) {
+        linesStack.push(2);
+      }
+      else if(isRomanList(line)) {
+        linesStack.push(3);
+      }
+    });
+
+    result += '<ol>';
+    linesStack.forEach((lineType, index) => {
+      const line = lines[index];
+      if(lineType === 1) {
+        result += `<li>${line.replace(/^\(\d+\.\)/, '').trim()}</li>`;
+      }
+      else if(lineType === 2) {
+        if (linesStack[index - 1] === 1) {
+          result += '<ol type="a">';
+        }
+        result += `<li>${line.replace(/^\([a-h]\.\)/, '').trim()}</li>`;
+        if (linesStack[index + 1] === 1) {
+          result += '</ol>';
+        }
+      }
+      else if(lineType === 3) {
+        if (linesStack[index - 1] === 2) {
+          result += '<ol type="i">';
+        }
+        result += `<li>${line.replace(/^\([ivxlcdm]+\.\)/i, '').trim()}</li>`;
+        if (linesStack[index + 1] === 2) {
+          result += '</ol>';
+        }
+        if (linesStack[index + 1] === 1) {
+          result += '</ol></ol>';
+        }
+      }
+    });
+
+    result += '</ol>';
+
+    formattedText = result;
+  };
 
   return formattedText;
 };
