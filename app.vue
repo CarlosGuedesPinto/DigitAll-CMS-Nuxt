@@ -38,6 +38,12 @@ ol
 
   &[type="i"]
     list-style-type: lower-roman
+
+.no-underline
+  text-decoration-line: none !important
+
+  *
+    text-decoration-line: none !important
     
 
 .extrabold
@@ -55,8 +61,14 @@ ol
 .blue-text 
   color: #0082FF
 
+  *
+    color: #0082FF
+
 .blue-text:hover
   color: #FF9E00
+
+  *
+    color: #FF9E00
   
 
 </style>

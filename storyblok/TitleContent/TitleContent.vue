@@ -5,7 +5,7 @@
     class="title-content w-full"
   >
     <div class="title-content__title-wrapper" :class="{
-        'title-content__title-wrapper--border': blok.content.length > 0
+        'title-content__title-wrapper--border': blok.title && blok.content.length > 0
       }">
       <span v-if="blok.title" class="title-content__title ldtech"  v-html="formatText(blok.title)" />
       <NuxtLink v-if="blok.link" class="extrabold self-end text-right" :to="blok.link.url ? blok.link.url : `/${blok.link.cached_url}`">{{ blok.linkLabel }}</NuxtLink>
@@ -41,6 +41,4 @@ const props = defineProps({
     default: false,
   },
 });
-
-console.log(props);
 </script>

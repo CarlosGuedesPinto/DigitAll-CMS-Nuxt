@@ -33,8 +33,8 @@
         <tbody class="component-table__body component-table__horizontal extralight">
           <tr v-for="(row, index) in blok.table.tbody" :key="index">
             <td v-for="(cell, index) in row.body" :key="index" :class="{
-                'semibold content-start': index === 0 && blok.tableHeadersColor === 'black',
-                'semibold content-start component-table__blue-content': index === 0 && blok.tableHeadersColor === 'blue',
+                'content-start': index === 0 && blok.tableHeadersColor === 'black',
+                'content-start component-table__blue-content': index === 0 && blok.tableHeadersColor === 'blue',
               }">
               <span v-html="formatText(cell.value)" />
             </td>

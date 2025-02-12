@@ -8,7 +8,7 @@ export const formatText = (text: string) => {
 
   if (formattedText.startsWith('/azul/')) {
     formattedText = formattedText.replace('/azul/', '');
-    formattedText = `<span class="blue-text semibold">${formattedText}</span>`;
+    formattedText = `<span class="blue-text semibold no-underline">${formattedText}</span>`;
   }
 
   formattedText = formattedText.replace(/\n/g, '<br>');

@@ -54,6 +54,10 @@
     &--cta {
       align-self: flex-end;
       text-align: right;
+
+      &:hover {
+        color: #FF9E00;
+      }
     }
   }
 

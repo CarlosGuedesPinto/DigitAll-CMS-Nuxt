@@ -85,6 +85,32 @@ onMounted(async () => {
       resolveRelations,
     });
   }
+
+  setTimeout(() => {
+    const tables = document.querySelectorAll('table');
+    const maxWidths = [];
+
+    // Find the maximum width for each column index
+    tables.forEach((table) => {
+      const tds = table.querySelectorAll('td');
+      tds.forEach((td, index) => {
+        const width = td.offsetWidth;
+        if (!maxWidths[index] || width > maxWidths[index]) {
+          maxWidths[index] = width;
+        }
+      });
+    });
+
+    // Apply the maximum width to each column index
+    tables.forEach((table) => {
+      const tds = table.querySelectorAll('td');
+      tds.forEach((td, index) => {
+        if (maxWidths[index]) {
+          td.style.width = `${maxWidths[index]}px`;
+        }
+      });
+    });
+  }, 100);
 });
 
 watch(story, (newStory) => {
@@ -101,4 +127,6 @@ watch(story, (newStory) => {
     });
   }
 });
+
+
 </script>

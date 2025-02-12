@@ -7,7 +7,10 @@
         </div>
 
         <div class="footer__rows--row-content flex-col flex">
-          <span class="extrabold">Coordenação do Projeto</span>
+          <div class="flex flex-col">
+            <span class="extrabold">Coordenação do Projeto</span>
+            <span class="extralight" v-html="formatText(blok.projectCoordination)" />
+          </div>
 
           <div class="flex flex-col">
             <span class="extrabold">Morada</span>

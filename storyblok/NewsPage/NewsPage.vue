@@ -17,7 +17,6 @@
 
 <script setup>
 import TitleContent from '../TitleContent/TitleContent.vue';
-import Image from '../Image/Image.vue';
 import './NewsPage.scss';
 
 const props = defineProps({
