@@ -11,12 +11,15 @@
       <NuxtLink v-if="blok.link" class="extrabold self-end text-right" :to="blok.link.url ? blok.link.url : `/${blok.link.cached_url}`">{{ blok.linkLabel }}</NuxtLink>
     </div>
     <div v-if="blok.content.length > 0" class="title-content__content">
-      <component
+      <template
         v-for="(blok, index) in blok.content"
-        :key="index"
-        :is="blok.component"
-        :blok="blok"
-      />
+        :key="index">
+        <component
+          v-if="blok.visible"
+          :is="blok.component"
+          :blok="blok"
+        />
+      </template>
     </div>
   </div>
   <div v-else class="title-content__skeleton">

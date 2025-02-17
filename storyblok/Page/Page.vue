@@ -1,7 +1,7 @@
 <template>
   <div v-editable="blok" class="page gap-16 flex flex-col pb-16" :class="containerClass">
     <div class="page__component" v-for="blok in blok.body" :key="blok._uid">
-      <StoryblokComponent :blok="blok" />
+      <StoryblokComponent v-if="blok.visible" :blok="blok" />
     </div>
   </div>
 </template>

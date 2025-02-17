@@ -21,7 +21,7 @@
     </div>
     <div v-if="isMenuOpen && items.length > 0" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col desktop:hidden justify-between">
       <nav class="tablet:flex">
-        <ul class="flex flex-col tablet:grid tablet:grid-cols-4 gap-4 text-lg font-bold tablet:max-w-[100%] w-full">
+        <ul class="navigationMobile flex flex-col tablet:grid tablet:grid-cols-5 gap-4 text-lg font-bold tablet:max-w-[100%] w-full">
           <li
             v-for="item in items"
             :key="item._uid"

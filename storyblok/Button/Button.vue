@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
     v-if="blok.link && !isAnchor"
-    :to="blok.link.cached_url ? `/${blok.link.cached_url}` : blok.link"
+    :to="blok.link.url ? blok.link.url : `/${blok.link.cached_url}`"
     class="button"
     :class="[`button--${blok.variant}`, {
       '!justify-center': isCentered,

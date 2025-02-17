@@ -22,7 +22,7 @@ body
 img
   max-width: unset
 
-ul 
+.text__ul
     list-style-type: disc
     padding-left: 15px
 

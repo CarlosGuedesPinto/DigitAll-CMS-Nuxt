@@ -31,7 +31,7 @@ export const formatText = (text: string) => {
       if (line.trim().startsWith('(-)')) {
         if (!insideList) {
           insideList = true;
-          result += '<ul>';
+          result += '<ul class="text__ul">';
         }
         listItems += `<li>${line.replace('(-)', '').trim()}</li>`;
         

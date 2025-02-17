@@ -90,7 +90,6 @@ onMounted(async () => {
     const tables = document.querySelectorAll('table');
     const maxWidths = [];
 
-    // Find the maximum width for each column index
     tables.forEach((table) => {
       const tds = table.querySelectorAll('td');
       tds.forEach((td, index) => {
@@ -101,7 +100,6 @@ onMounted(async () => {
       });
     });
 
-    // Apply the maximum width to each column index
     tables.forEach((table) => {
       const tds = table.querySelectorAll('td');
       tds.forEach((td, index) => {

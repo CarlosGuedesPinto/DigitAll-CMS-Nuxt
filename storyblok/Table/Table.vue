@@ -8,20 +8,20 @@
       <table>
         <thead>
           <tr class="component-table__header extrabold" :class="{ 'component-table__header--headersBlack': blok.tableHeadersColor === 'black' }"> 
-            <td v-for="(row, index) in blok.table.thead" :key="index" :class="{
-                'sticky-cell': index === 0 && blok.hasFirstLockedColumn,
-                'td--scroll-second': index === 1 && blok.hasFirstLockedColumn,
-              }">
+            <td v-for="(row, tdHeadIndex) in blok.table.thead" :key="tdHeadIndex" :class="{
+                'sticky-cell': blok.lockedColumns && tdHeadIndex < blok.lockedColumns,
+                'td--scroll-second': blok.lockedColumns && tdHeadIndex === blok.lockedColumns - 1 && blok.lockedColumns > 0,
+              }" :style="getStickyStyle(tdHeadIndex)">
               <span v-html="formatText(row.value)" />
             </td>
           </tr>
         </thead>
         <tbody class="component-table__body extralight">
-          <tr v-for="(row, index) in blok.table.tbody" :key="index">
-            <td v-for="(cell, index) in row.body" :key="index" :class="{
-                'sticky-cell': index === 0 && blok.hasFirstLockedColumn,
-                'td--scroll-second': index === 1 && blok.hasFirstLockedColumn,
-              }">
+          <tr v-for="(row, trIndex) in blok.table.tbody" :key="trIndex">
+            <td v-for="(cell, tdBodyIndex) in row.body" :key="index" :class="{
+                'sticky-cell': blok.lockedColumns && tdBodyIndex < blok.lockedColumns,
+                'td--scroll-second': blok.lockedColumns && tdBodyIndex === blok.lockedColumns - 1 && blok.lockedColumns > 0,
+              }" :style="getStickyStyle(tdBodyIndex)">
               <span v-html="formatText(cell.value)" />
             </td>
           </tr>
@@ -57,34 +57,22 @@ const props = defineProps({
   },
 });
 
-const tableContainer = ref(null);
-let previousScrollLeft = 0;
+const firstColumnWidth = ref(0);
 
-const handleScroll = (event) => {
-  const scrollLeft = event.target.scrollLeft;
-  const isScrollingLeft = scrollLeft > previousScrollLeft;
-  previousScrollLeft = scrollLeft;
-
-  if (isScrollingLeft) {
-    tableContainer.value.querySelectorAll('.td--scroll-second').forEach(td => {
-      td.classList.add('scrolling');
-    });
-  } else {
-    tableContainer.value.querySelectorAll('.td--scroll-second').forEach(td => {
-      td.classList.remove('scrolling');
-    });
+function getStickyStyle (index) {
+  if (index === 0) {
+    return { left: '0px' };
+  } else if (index === 1 && Number(props.blok.lockedColumns) > 1) {
+    return { left: firstColumnWidth.value + 'px' };
   }
-};
+  return {};
+}
 
-onMounted(() => {
-  if (tableContainer.value) {
-    tableContainer.value.addEventListener('scroll', handleScroll);
-  }
-});
-
-onBeforeUnmount(() => {
-  if (tableContainer.value) {
-    tableContainer.value.removeEventListener('scroll', handleScroll);
+onMounted(async () => {
+  await nextTick();
+  const firstTd = document.querySelector('td:first-child');
+  if (firstTd) {
+    firstColumnWidth.value = firstTd.offsetWidth;
   }
 });
 </script>

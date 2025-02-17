@@ -154,16 +154,6 @@
         height: 1px;
         background-color: #0082FF;
       }
-
-      .td--scroll-second::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 1px;
-        background-color: #0082FF;
-      }
     }
   }
 
@@ -181,14 +171,14 @@
   left: 0;
   background-color: #F7FBFF;
   z-index: 1;
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    bottom: 8px;
-    right: 0;
-    width: 1px;
-    background-color: #0082FF;
-  }
+.td--scroll-second::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  right: 0;
+  width: 1px;
+  background-color: #0082FF;
 }

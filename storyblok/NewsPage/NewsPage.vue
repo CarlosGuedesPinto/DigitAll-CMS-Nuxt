@@ -10,7 +10,7 @@
     </div>
     <TitleContent :blok="titleContentBlok" class="news-page__primary-text pt-[50px]"/>
     <div class="news-page__content" v-for="blok in blok.body" :key="blok._uid">
-      <StoryblokComponent :blok="blok" />
+      <StoryblokComponent :blok="blok" v-if="blok.visible"/>
     </div>
   </div>
 </template>
