@@ -51,7 +51,7 @@ onMounted(async () => {
       variant: 'primary',
       iconLeft: false,
       hasIcon: true,
-    }">Voltar ao Início</Button>
+    }" />
     </div>
 </template>
 

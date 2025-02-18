@@ -21,6 +21,11 @@
             @clicked="scroll" />
         </template>
       </div>
+      <Button :blok="{
+        text: '#construir o futuro',
+        variant: 'secondary',
+        iconLeft: false,
+      }" class="hero__future-button" />
     </div>
   </div>
 </template>
@@ -29,6 +34,7 @@
 import "./Hero.scss";
 import { formatText } from "~/src/helpers/text";
 import { preloadImages } from "~/src/helpers/image";
+import Button from "../Button/Button";
 
 const props = defineProps({
   blok: {
