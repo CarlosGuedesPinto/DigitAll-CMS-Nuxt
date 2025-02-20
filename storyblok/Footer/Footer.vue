@@ -42,7 +42,8 @@
             class="extrabold" 
             :to="row.website.cached_url" 
             target="_blank"
-            rel="noopener noreferrer">{{ row.website.cached_url }}</NuxtLink>
+            :title="row.website.title"
+            rel="noopener noreferrer">{{ row.website.title }}</NuxtLink>
 
           <div class="flex flex-col">
             <span class="extrabold">Morada</span>

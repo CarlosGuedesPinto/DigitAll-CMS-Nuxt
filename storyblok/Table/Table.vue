@@ -19,8 +19,8 @@
         <tbody class="component-table__body extralight">
           <tr v-for="(row, trIndex) in blok.table.tbody" :key="trIndex">
             <td v-for="(cell, tdBodyIndex) in row.body" :key="index" :class="{
-                'sticky-cell': blok.lockedColumns && tdBodyIndex < blok.lockedColumns,
-                'td--scroll-second': blok.lockedColumns && tdBodyIndex === blok.lockedColumns - 1 && blok.lockedColumns > 0,
+                'sticky-cell text-left': blok.lockedColumns && tdBodyIndex < blok.lockedColumns,
+                'td--scroll-second text-left': blok.lockedColumns && tdBodyIndex === blok.lockedColumns - 1 && blok.lockedColumns > 0,
               }" :style="getStickyStyle(tdBodyIndex)">
               <span v-html="formatText(cell.value)" />
             </td>
