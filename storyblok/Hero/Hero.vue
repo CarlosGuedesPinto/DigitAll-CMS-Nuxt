@@ -21,11 +21,6 @@
             @clicked="scroll" />
         </template>
       </div>
-      <Button :blok="{
-        text: '#construir o futuro',
-        variant: 'secondary',
-        iconLeft: false,
-      }" class="hero__future-button" />
     </div>
   </div>
 </template>
