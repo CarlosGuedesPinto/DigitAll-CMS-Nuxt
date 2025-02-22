@@ -41,11 +41,14 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: process.env.NUXT_PUBLIC_SITE_NAME,
+      title: `Digit'ALL APNOR`,
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'digitall', name: 'DigitAll', content: 'DigitAll website' }
+        { hid: 'digitall', name: `Digit'ALL APNOR`, content: `Digit'ALL APNOR` },
+        { name: 'description', content: `Digit'ALL APNOR` },
+        { name: 'og:description', content: `Digit'ALL APNOR` },
+        { name: `og:title`, content: `Digit'ALL APNOR` },
       ]
     }
   },

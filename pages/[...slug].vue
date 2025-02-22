@@ -113,15 +113,12 @@ onMounted(async () => {
 
 watch(story, (newStory) => {
   if (newStory) {
-    const text = `Digit'All - ${newStory.name}` || "Digit'All";
-    useHead({
-      title: text,
-      meta: [
-        {
-          name: "description",
-          content: text,
-        },
-      ],
+    const text = `Digit'ALL APNOR - ${newStory.name}` || "Digit'ALL APNOR";
+    useSeoMeta({
+      title: () => text,
+      ogTitle: () => text,
+      description: () => text,
+      ogDescription: () => text,
     });
   }
 });
