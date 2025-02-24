@@ -47,7 +47,9 @@ onMounted(async () => {
     <h1 class="">Ups!! Parece que alguma coisa correu mal.</h1>
     <Button :blok="{
       text: 'Voltar ao Início',
-      link: '/',
+      link: {
+        url: '/',
+      },
       variant: 'primary',
       iconLeft: false,
       hasIcon: true,
