@@ -21,6 +21,7 @@
             @clicked="scroll" />
         </template>
       </div>
+      <span class="hero__future-button extrabold">#construir o futuro</span>
     </div>
   </div>
 </template>
