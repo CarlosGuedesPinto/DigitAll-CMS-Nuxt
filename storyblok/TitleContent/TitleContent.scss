@@ -30,4 +30,10 @@
       border-bottom: 1px solid #0082FF;
     }
   }
+
+  &__link {
+    &:hover {
+      color: #FF9E00;
+    }
+  }
 }

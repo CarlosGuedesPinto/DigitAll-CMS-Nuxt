@@ -8,7 +8,7 @@
         'title-content__title-wrapper--border': blok.title && blok.content.length > 0
       }">
       <span v-if="blok.title" class="title-content__title ldtech"  v-html="formatText(blok.title)" />
-      <NuxtLink v-if="blok.link" class="extrabold self-end text-right" :to="blok.link.url ? blok.link.url : `/${blok.link.cached_url}`">{{ blok.linkLabel }}</NuxtLink>
+      <NuxtLink v-if="blok.link" class="title-content__link extrabold self-end text-right" :to="blok.link.url ? blok.link.url : `/${blok.link.cached_url}`">{{ blok.linkLabel }}</NuxtLink>
     </div>
     <div v-if="blok.content.length > 0" class="title-content__content">
       <template
