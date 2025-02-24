@@ -8,6 +8,7 @@
       'button--disabled': disabled,
     }]" 
     :disabled="disabled"
+    :target="blok.link.target"
   >
     {{ blok.text }}
     <template v-if="blok.hasIcon">
@@ -54,6 +55,8 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['clicked']);
+
+console.log(props.blok.link)
 
 const handleClick = (event) => {
   emit('clicked', event);
