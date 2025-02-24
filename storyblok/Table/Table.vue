@@ -9,8 +9,8 @@
         <thead>
           <tr class="component-table__header extrabold" :class="{ 'component-table__header--headersBlack': blok.tableHeadersColor === 'black' }"> 
             <td v-for="(row, tdHeadIndex) in blok.table.thead" :key="tdHeadIndex" :class="{
-                'sticky-cell': blok.lockedColumns && tdHeadIndex < blok.lockedColumns,
-                'td--scroll-second': blok.lockedColumns && tdHeadIndex === blok.lockedColumns - 1 && blok.lockedColumns > 0,
+                'sticky-cell text-left': blok.lockedColumns && tdHeadIndex < blok.lockedColumns,
+                'td--scroll-second text-left': blok.lockedColumns && tdHeadIndex === blok.lockedColumns - 1 && blok.lockedColumns > 0,
               }" :style="getStickyStyle(tdHeadIndex)">
               <span v-html="formatText(row.value)" />
             </td>
