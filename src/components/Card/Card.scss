@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: column;
   height: 476px;
-  justify-content: space-between;
 
   &__image {
     aspect-ratio: 16/9;
@@ -41,6 +40,7 @@
 
   &__content {
     overflow: hidden;
+    height: 100%;
   }
 
   &__title {

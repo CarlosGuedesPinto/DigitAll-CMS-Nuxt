@@ -10,7 +10,7 @@
             loading="lazy"
           />
         </div>
-        <div class="card__content flex flex-col gap-4">
+        <div class="card__content flex flex-col gap-4 h-[100%]">
           <span class="card__title extrabold">{{ item.title }}</span>
           <span class="card__text extralight">{{ item.primaryText }}</span>
 
