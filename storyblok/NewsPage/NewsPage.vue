@@ -34,8 +34,10 @@ const titleContentBlok = {
       component: 'text',
       hasBorder: false,
       text: props.blok.primaryText,
-      title: ""
+      title: "",
+      visible: true
     }
-  ]
+  ],
+  visible: true
 };
 </script>
