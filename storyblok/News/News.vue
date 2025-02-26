@@ -1,7 +1,7 @@
 <template>
   <div v-if="!loading" v-editable="blok" class="news">
     <div class="news__title--container">
-      <span class="news__title ldtech" v-html="formatText(blok.title)" />
+      <h1 class="news__title ldtech" v-html="formatText(blok.title)" />
       <NuxtLink class="news__title--cta extrabold" to="/pagina-noticias">Ver todas</NuxtLink>
     </div>
     <div class="news__container" :class="`news__container--${news.length}`">

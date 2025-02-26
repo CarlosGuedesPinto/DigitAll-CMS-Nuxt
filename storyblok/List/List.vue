@@ -6,7 +6,7 @@
       'list--border': blok.hasBorder
     }"
   >
-    <span v-if="blok.title" class="extrabold" v-html="formatText(blok.title)" />
+    <h1 v-if="blok.title" class="extrabold" v-html="formatText(blok.title)" />
     <div class="extralight list__list">
       <div class="list__item" v-for="(item, index) in listItems" :key="index">
         <img :src="arrowRightBlue" alt="dash" class="list__dash-image" />

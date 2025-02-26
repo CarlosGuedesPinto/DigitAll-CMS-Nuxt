@@ -10,7 +10,7 @@
     }" />
     <div class="hero__content flex flex-col">
       <div class="hero__content--container">
-        <span class="hero__content--title ldtech" v-html="formatText(blok.title)" />
+        <h1 class="hero__content--title ldtech" v-html="formatText(blok.title)" />
         <template v-if="blok.button.length > 0">
           <component
             v-for="(buttonBlok, index) in blok.button"

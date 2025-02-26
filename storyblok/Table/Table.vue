@@ -3,7 +3,7 @@
     v-editable="blok"
     class="component-table"
   >
-    <span v-if="blok.title" class="ldtech component-table__title" v-html="formatText(blok.title)" />
+    <h1 v-if="blok.title" class="ldtech component-table__title" v-html="formatText(blok.title)" />
     <div class="component-table__table" ref="tableContainer" v-if="blok.orientation === 'vertical'">
       <table>
         <thead>
