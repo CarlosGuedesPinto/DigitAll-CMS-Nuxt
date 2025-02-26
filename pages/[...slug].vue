@@ -117,8 +117,6 @@ watch(story, (newStory) => {
     useSeoMeta({
       title: () => text,
       ogTitle: () => text,
-      description: () => text,
-      ogDescription: () => text,
     });
   }
 });
