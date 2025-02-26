@@ -2,9 +2,7 @@ import type { SitemapUrlInput } from '#sitemap/types';
 import axios from 'axios';
 
 const fetchLinks = async () => {
-  const publicSbUrl = useRuntimeConfig().public.publicSbUrl;
-  const publicToken = useRuntimeConfig().public.contentDeliveryToken;
-  const url = `${publicSbUrl}/links/?version=published&token=${publicToken}&per_page=500`;
+  const url = `https://api.storyblok.com/v2/cdn/links/?version=published&token=6QIlGppf3xcha9QvQOhhfAtt&per_page=500`;
   try {
     const { data } = await axios.get(url);
     const links = Object.values(data.links)
