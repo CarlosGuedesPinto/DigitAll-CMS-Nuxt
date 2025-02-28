@@ -6,7 +6,7 @@
     <img
       :src="blok.image.filename"
       :alt="blok.image.alt"
-      class="w-full"
+      class="w-full rounded-lg"
     />
   </div>
 </template>

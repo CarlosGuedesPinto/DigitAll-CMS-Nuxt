@@ -14,10 +14,6 @@
     @media screen and (min-width: 832px) {
       font-size: 65px;
     }
-
-    &--border {
-      border-bottom: 1px solid #0082FF;
-    }
   }
 
   &__content {
@@ -25,5 +21,19 @@
     flex-direction: column;
     padding-top: 14px;
     gap: 16px;
+  }
+
+  &__title-wrapper {
+    display: flex;
+    justify-content: space-between;
+    &--border {
+      border-bottom: 1px solid #0082FF;
+    }
+  }
+
+  &__link {
+    &:hover {
+      color: #FF9E00;
+    }
   }
 }

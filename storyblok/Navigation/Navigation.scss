@@ -13,6 +13,7 @@ body.no-scroll {
 
   &__desktop {
     max-width: 1408px;
+    height: 64px;
     justify-self: center;
   }
 
@@ -42,7 +43,7 @@ body.no-scroll {
       width: 100%;
      
       @media screen and (min-width: 1408px) {
-        width: 216px;
+        width: 185px;
       }
     }
 
@@ -85,12 +86,12 @@ body.no-scroll {
     border-radius: 8px;
 
     @media screen and (min-width: 1408px) {
-      width: 216px;
+      width: 180px;
     }
 
     &--moodle {
       @media screen and (min-width: 1408px) {
-        width: 100px;
+        width: 90px;
       }
     }
 
@@ -115,10 +116,20 @@ body.no-scroll {
   }
 
   &-mobile {
+    height: 56px;
     &__menu {
       background-color: #0082FF;
-      height: calc(100vh - 56px);
+      height: calc(100dvh - 56px);
       padding: 16px;
+      overflow: auto;
+    }
+
+    &__footer {
+      padding-top: 16px;
+
+      &--logo-grid {
+        max-height: 38px;
+      }
     }
 
     &__button {

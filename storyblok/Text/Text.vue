@@ -9,7 +9,7 @@
     <div class="text__container flex flex-col" :class="{
       'text__container--aligned-left': blok.alignedLeft
     }">
-      <span v-if="blok.title" class="extrabold pb-1" v-html="formatText(blok.title)" />
+      <h1 v-if="blok.title" class="extrabold pb-1" v-html="formatText(blok.title)" />
       <span class="extralight text__content" v-html="formatText(blok.text)"></span>
     </div>
   </div>

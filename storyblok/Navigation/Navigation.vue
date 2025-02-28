@@ -1,23 +1,27 @@
 <template>
   <header :class="{
     'navigation--white-border': isMenuOpen,
-  }" class="navigation w-full grid" v-if="items.length > 0">
+  }" class="navigation w-full grid">
     <!-- Mobile -->
     <div class="h-full w-full flex justify-between px-4 pt-4 pb-[10px] desktop:hidden" :class="{
       'bg-[#0082FF]': isMenuOpen,
     }">
-      <NuxtLink to="/">
-        <img v-if="!isMenuOpen" :src="logo" alt="Logo" width="160px" height="30px"/>
-        <img v-if="isMenuOpen" :src="logoWhite" alt="Logo" width="160px" height="30px"/>
-      </NuxtLink>
+      <div class="flex gap-4">
+        <NuxtLink to="/">
+          <img v-if="!isMenuOpen" :src="logo" alt="Logo" width="160px" height="30px"/>
+          <img v-if="isMenuOpen" :src="logoWhite" alt="Logo" width="160px" height="30px"/>
+        </NuxtLink>
+        <img v-if="!isMenuOpen && hasAnyComplementaryImage" :src="(primaryComplementaryImage?.filename || secondaryComplementaryImage?.filename)" alt="Primary Complementary Image" class="max-w-[130px] h-[24px] self-center" />
+        <img v-if="isMenuOpen && hasAnyComplementaryImage" :src="(secondaryComplementaryImage?.filename || primaryComplementaryImage?.filename)" alt="Secondary Complementary Image" class="max-w-[130px] h-[24px] self-center" />
+      </div>
       <button @click="toggleMenu" class="navigation-mobile__button">
         <img v-if="!isMenuOpen" :src="burguerIcon" alt="Burguer Icon" />
         <img v-if="isMenuOpen" :src="closeIcon" alt="Close Icon" />
       </button>
     </div>
-    <div v-if="isMenuOpen" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col desktop:hidden justify-between">
+    <div v-if="isMenuOpen && items.length > 0" class="navigation-mobile__menu absolute top-[57.5px] left-0 w-full z-50 flex flex-col desktop:hidden justify-between">
       <nav class="tablet:flex">
-        <ul class="flex flex-col tablet:grid tablet:grid-cols-4 gap-4 text-lg font-bold tablet:max-w-[100%] w-full">
+        <ul class="navigationMobile flex flex-col tablet:grid tablet:grid-cols-5 gap-4 text-lg font-bold tablet:max-w-[100%] w-full">
           <li
             v-for="item in items"
             :key="item._uid"
@@ -43,28 +47,32 @@
             <NuxtLink v-else :to="item.slug" @click="toggleMenu" :class="['navigation-mobile__nav-item flex w-full', { 'navigation-mobile__nav-item--active': isItemActive(item.slug, item.submenus && item.submenus.length > 0) }]">{{ item.title }}</NuxtLink>
           </li>
           <li class="flex">
-            <NuxtLink to="/moodle" @click="toggleMenu" class="navigation-mobile__nav-item w-full">Moodle</NuxtLink>
+            <NuxtLink :to="blok.moodleLink.url ? blok.moodleLink.url : `/${blok.moodleLink.cached_url}`" @click="toggleMenu" target="_blank" class="navigation-mobile__nav-item w-full">Moodle</NuxtLink>
           </li>
         </ul>
       </nav>
-      <div class="navigation-mobile__footer flex justify-center w-full pt-[120px]">
-        <div class="grid grid-cols-4 gap-4 items-center">
-          <img :src="logoIPBWhite" alt="LogoIPB" class="w-full h-auto" />
-          <img :src="logoIPCWhite" alt="LogoIPC" class="w-full h-auto" />
-          <img :src="logoIPPWhite" alt="LogoIPP" class="w-full h-auto" />
-          <img :src="logoIPVCWhite" alt="LogoIPVC" class="w-full h-auto" />
+      <div class="navigation-mobile__footer">
+        <div class="grid grid-cols-4 gap-4 items-center max-w-[528px] ">
+          <img :src="logoIPBWhite" alt="LogoIPB" class="w-full max-h-[38px] h-full" />
+          <img :src="logoIPCWhite" alt="LogoIPC" class="w-full max-h-[38px] h-full" />
+          <img :src="logoIPPWhite" alt="LogoIPP" class="w-full max-h-[38px] h-full" />
+          <img :src="logoIPVCWhite" alt="LogoIPVC" class="w-full max-h-[38px] h-full" />
         </div>
       </div>
     </div>
     <!-- Desktop -->
     <div class="navigation__desktop h-full w-full px-4 pt-4 pb-[7.5px] hidden desktop:flex">
       <div class="navigation__desktop--content w-full flex justify-between">
-        <NuxtLink to="/">
-          <img :src="logo" alt="Logo" width="216px" height="40.5px"/>
-        </NuxtLink>
+        <div class="flex gap-4">
+          <NuxtLink to="/">
+            <img :src="logo" alt="Logo" width="216px" height="40.5px"/>
+          </NuxtLink>
+          <img v-if="hasAnyComplementaryImage" :src="(primaryComplementaryImage?.filename || secondaryComplementaryImage?.filename)" alt="Primary Complementary Image" class="max-w-[130px] h-[24px] self-center mb-[6px]" />
+        </div>
         <nav>
           <ul class="flex gap-4 text-lg font-bold navigation__nav-link relative">
             <li
+              v-if="items.length > 0"
               v-for="item in items"
               :key="item._uid"
               :class="['navigation__nav-item flex', { 'navigation__nav-item--active': isItemActive(item.slug, item.submenus && item.submenus.length > 0) }]"
@@ -90,7 +98,7 @@
               </template>
             </li>
             <li class="flex">
-              <NuxtLink to="/moodle" class="navigation__nav-item navigation__nav-item--moodle">Moodle</NuxtLink>
+              <NuxtLink :to="blok.moodleLink.url ? blok.moodleLink.url : `/${blok.moodleLink.cached_url}`" target="_blank" class="navigation__nav-item navigation__nav-item--moodle">Moodle</NuxtLink>
             </li>
           </ul>
         </nav>
@@ -112,11 +120,20 @@ import logoIPBWhite from "~/assets/logos/LogoIPBWhite.svg";
 import logoIPCWhite from "~/assets/logos/LogoIPCWhite.svg";
 import logoIPPWhite from "~/assets/logos/LogoIPPWhite.svg";
 import logoIPVCWhite from "~/assets/logos/LogoIPVCWhite.svg";
+import { preloadImages } from "~/src/helpers/image";
 
 const props = defineProps({
   blok: {
     type: Object,
-    required: true,
+    required: false,
+  },
+  primaryComplementaryImage: {
+    type: Object,
+    required: false,
+  },
+  secondaryComplementaryImage: {
+    type: Object,
+    required: false,
   },
 });
 
@@ -183,9 +200,26 @@ const isItemActive = (slug, hasSubmenus) => {
   return route.currentRoute.value.path === slug;
 };
 
+const hasAnyComplementaryImage = !!props.primaryComplementaryImage?.id || !!props.secondaryComplementaryImage?.id;
+
 onMounted(async () => {
-  await fetchSlugs();
+  if (props.blok) {
+    await fetchSlugs();
+  }
   window.addEventListener('resize', updateScreenWidth);
+
+  preloadImages([
+    logo,
+    logoWhite,
+    burguerIcon,
+    closeIcon,
+    logoIPBWhite,
+    logoIPCWhite,
+    logoIPPWhite,
+    logoIPVCWhite,
+    props.primaryComplementaryImage?.filename,
+    props.secondaryComplementaryImage?.filename,
+  ].filter(Boolean));
 });
 
 onUnmounted(() => {

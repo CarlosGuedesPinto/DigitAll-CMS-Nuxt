@@ -4,17 +4,22 @@
     v-editable="blok"
     class="title-content w-full"
   >
-    <span class="title-content__title ldtech" :class="{
-      'title-content__title--border': blok.content.length > 0
-    }"
-     v-html="formatText(blok.title)" />
+    <div class="title-content__title-wrapper" :class="{
+        'title-content__title-wrapper--border': blok.title && blok.content.length > 0
+      }">
+      <h1 v-if="blok.title" class="title-content__title ldtech"  v-html="formatText(blok.title)" />
+      <NuxtLink v-if="blok.link" class="title-content__link extrabold self-end text-right" :to="blok.link.url ? blok.link.url : `/${blok.link.cached_url}`">{{ blok.linkLabel }}</NuxtLink>
+    </div>
     <div v-if="blok.content.length > 0" class="title-content__content">
-      <component
+      <template
         v-for="(blok, index) in blok.content"
-        :key="index"
-        :is="blok.component"
-        :blok="blok"
-      />
+        :key="index">
+        <component
+          v-if="blok.visible"
+          :is="blok.component"
+          :blok="blok"
+        />
+      </template>
     </div>
   </div>
   <div v-else class="title-content__skeleton">

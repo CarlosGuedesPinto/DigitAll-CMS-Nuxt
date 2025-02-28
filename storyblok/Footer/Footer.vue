@@ -7,7 +7,10 @@
         </div>
 
         <div class="footer__rows--row-content flex-col flex">
-          <span class="extrabold">Coordenação do Projeto</span>
+          <div class="flex flex-col">
+            <span class="extrabold">Coordenação do Projeto</span>
+            <span class="extralight" v-html="formatText(blok.projectCoordination)" />
+          </div>
 
           <div class="flex flex-col">
             <span class="extrabold">Morada</span>
@@ -31,15 +34,16 @@
           :key="row.uid"
           class="footer__rows--row footer__rows--row--border flex flex-col gap-4"
         >
-          <div>
-            <img :src="row.logo.filename" :alt="row.logo.alt" loading="lazy" style="h-full"/>
+          <div class="footer__rows--row-image self-center">
+            <img :src="row.logo.filename" :alt="row.logo.alt" loading="lazy" class=""/>
           </div>
-
+          
           <NuxtLink 
             class="extrabold" 
             :to="row.website.cached_url" 
             target="_blank"
-            rel="noopener noreferrer">{{ row.website.cached_url }}</NuxtLink>
+            :title="row.website.title"
+            rel="noopener noreferrer">{{ row.website.title }}</NuxtLink>
 
           <div class="flex flex-col">
             <span class="extrabold">Morada</span>
@@ -89,7 +93,7 @@
   </footer>
   <div class="footer__copyright">
     <div class="footer__copyright--container">
-      <img :src="logosFooter" alt="Logo" class="footer__copyright--logos"/>
+      <img :src="logosFooter" alt="Logo" class="footer__copyright--logos max-h-[36px] max-w-[100%]"/>
       <div class="footer__copyright--authors flex flex-col">
         <span class="">Digit'ALL 2025 ©</span>
         <span class="">

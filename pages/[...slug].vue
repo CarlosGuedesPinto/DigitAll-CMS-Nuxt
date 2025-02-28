@@ -3,10 +3,12 @@
     <div v-if="story.content.topbar?.length > 0">
       <StoryblokComponent
         :blok="story.content.topbar[0].reference[0].content"
+        :primary-complementary-image="story.content.complementaryImagePrimary"
+        :secondary-complementary-image="story.content.complementaryImageSecondary"
         :loading="loading"
       />
     </div>
-    <div class="pt-[57px]">
+    <div class="slug__content">
       <StoryblokComponent :blok="story.content" :loading="loading" />
     </div>
     <div v-if="story.content.footer?.length > 0">
@@ -83,5 +85,41 @@ onMounted(async () => {
       resolveRelations,
     });
   }
+
+  setTimeout(() => {
+    const tables = document.querySelectorAll('table');
+    const maxWidths = [];
+
+    tables.forEach((table) => {
+      const tds = table.querySelectorAll('td');
+      tds.forEach((td, index) => {
+        const width = td.offsetWidth;
+        if (!maxWidths[index] || width > maxWidths[index]) {
+          maxWidths[index] = width;
+        }
+      });
+    });
+
+    tables.forEach((table) => {
+      const tds = table.querySelectorAll('td');
+      tds.forEach((td, index) => {
+        if (maxWidths[index]) {
+          td.style.width = `${maxWidths[index]}px`;
+        }
+      });
+    });
+  }, 100);
 });
+
+watch(story, (newStory) => {
+  if (newStory) {
+    const text = `Digit'ALL APNOR - ${newStory.name}` || "Digit'ALL APNOR";
+    useSeoMeta({
+      title: () => text,
+      ogTitle: () => text,
+    });
+  }
+});
+
+
 </script>

@@ -4,12 +4,15 @@
     class="pair w-full"
   >
     <template v-if="blok.content.length > 0" class="pair__content">
-      <component
+      <template 
         v-for="(blok, index) in blok.content"
-        :key="index"
-        :is="blok.component"
-        :blok="blok"
-      />
+        :key="index">
+        <component
+          v-if="blok.visible"
+          :is="blok.component"
+          :blok="blok"
+        />
+      </template>
     </template>
   </div>
 </template>

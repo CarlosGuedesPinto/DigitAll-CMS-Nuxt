@@ -1,6 +1,9 @@
 .component-table {
-  overflow-x: auto;
-  font-size: 17px;
+  font-size: 14px;
+
+  @media screen and (min-width: 832px) {
+    font-size: 17px;
+  }
 
   &__title {
     font-size: 32.5px;
@@ -8,9 +11,14 @@
   }
 
   &__table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
+    overflow-x: auto;
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      text-align: center;
+    }
 
     // Hard fix for the table to be responsive
     tbody:before {
@@ -32,7 +40,6 @@
   }
 
   &__header {
-
     &--headersBlack {
       color: #313233;
     }
@@ -149,4 +156,29 @@
       }
     }
   }
+
+  &__horizontal {
+    text-align: left;
+  }
+
+  &__blue-content {
+    color: #0082FF;
+  }
+}
+
+.sticky-cell {
+  position: sticky !important;
+  left: 0;
+  background-color: #F7FBFF;
+  z-index: 1;
+}
+
+.td--scroll-second::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  right: 0;
+  width: 1px;
+  background-color: #0082FF;
 }
