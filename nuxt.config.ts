@@ -45,10 +45,14 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { hid: 'digitall', name: `Digit'ALL APNOR`, content: `Digit'ALL APNOR` },
+        { hid: 'digitall', name: `DigitALL APNOR`, content: `DigitALL APNOR` },
         { name: 'description', content: `Digit'ALL APNOR - Reforçar a capacidade formativa nas competências digitais das pessoas provenientes de áreas disciplinares não CTEAM (ciências naturais; tecnologias da informação e comunicação; engenharia, indústrias transformadoras e construção; artes e humanidades; e matemática e estatística) e fortalecer a capacidade formativa em áreas menos avançadas na transformação digital na formação superior, seja ao nível de formação inicial, seja ao nível da reconversão e qualificação digital de diplomados já a exercer a sua atividade profissional.` },
         { name: 'og:description', content: `Digit'ALL APNOR - Reforçar a capacidade formativa nas competências digitais das pessoas provenientes de áreas disciplinares não CTEAM (ciências naturais; tecnologias da informação e comunicação; engenharia, indústrias transformadoras e construção; artes e humanidades; e matemática e estatística) e fortalecer a capacidade formativa em áreas menos avançadas na transformação digital na formação superior, seja ao nível de formação inicial, seja ao nível da reconversão e qualificação digital de diplomados já a exercer a sua atividade profissional.` },
         { name: `og:title`, content: `Digit'ALL APNOR - Projeto Digit'ALL APNOR` },
+        {
+          name: 'keywords',
+          content: `DigitALL IPP, DigitALL IPVC, DigitALL IPB, DigitALL IPCA, DigitALL APNOR`,
+        },
       ]
     }
   },
