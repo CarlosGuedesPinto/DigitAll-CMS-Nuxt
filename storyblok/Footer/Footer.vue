@@ -58,10 +58,20 @@
           <div class="flex flex-col">
             <span class="extrabold">Telefone</span>
             <span class="extralight" v-html="formatText(row.cellphone)" />
+
+            <div v-if="row.newsletter" class="flex flex-col mt-2">
+              <span class="extrabold">Newsletter</span>
+              <NuxtLink
+                :to="row.newsletter.cached_url" 
+                target="_blank"
+                :title="row.newsletter.title"
+                rel="noopener noreferrer">{{ row.newsletter.title || row.newsletter.cached_url }}</NuxtLink>
+            </div>
           </div>
 
           <div class="flex flex-col">
-            <span class="extrabold">Redes Sociais</span>
+            <span v-if="!!row.socials[0].title" class="extrabold">{{ row.socials[0].title }}</span>
+            <span v-else class="extrabold">Redes Sociais</span>
             <NuxtLink
               v-if="row.socials[0].instagram_link"
               :to="row.socials[0].instagram_link.cached_url"
@@ -119,5 +129,7 @@ const props = defineProps({
     required: true,
   },
 });
+
+console.log("Footer", props.blok);
 </script>
 

@@ -11,6 +11,10 @@
     line-height: 1;
     width: 100%;
 
+    &--medium {
+      font-size: 32.5px !important;
+    }
+
     @media screen and (min-width: 832px) {
       font-size: 65px;
     }
