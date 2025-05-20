@@ -1,7 +1,7 @@
 <template>
   <div v-editable="blok" class="news-page flex flex-col pb-16 pt-4">
     <div class="news-page__image-container">
-      <div class="news-page__image-overlay" />
+      <div v-if="blok.imageOverlay" class="news-page__image-overlay" />
       <img
         :src="blok.image.filename"
         :alt="blok.image.alt"

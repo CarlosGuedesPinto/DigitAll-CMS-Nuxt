@@ -56,6 +56,7 @@ const fetchStories = async (previousPage = 0) => {
       primaryText: story.content.primaryText,
       image: story.content.image,
       redirect: story.full_slug,
+      imageOverlay: story.content.imageOverlay,
     }));
 
     const { data: nextPageData } = await storyblokApi.get(`cdn/stories`, {

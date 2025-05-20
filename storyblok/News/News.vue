@@ -58,6 +58,7 @@ const fetchStories = async () => {
         primaryText: story.content.primaryText,
         image: story.content.image,
         redirect: story.full_slug,
+        imageOverlay: story.content.imageOverlay,
       });
     });
   } catch (error) {

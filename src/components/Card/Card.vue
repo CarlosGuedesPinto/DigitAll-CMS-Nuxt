@@ -2,7 +2,7 @@
   <NuxtLink :to="`/${item.redirect}`">
     <div class="card">
         <div v-if="item.image" class="card__image-container">
-          <div class="card__image-overlay" />
+          <div v-if="item.imageOverlay" class="card__image-overlay" />
           <img
             :src="item.image.filename"
             :alt="item.image.alt"
